@@ -181,7 +181,7 @@
   .lede{color:var(--ink-muted); max-width:420px; font-size:15.5px;}
 
   /* STORY */
-  .story-grid{display:grid; grid-template-columns:1.1fr 0.9fr; gap:40px; align-items:center;}
+  .story-grid{display:grid; grid-template-columns:1.1fr 0.9fr; gap:40px; align-items:start;}
   .story-grid p{color:var(--ink-muted); margin-bottom:18px; font-size:16px;}
   .quote-card{padding:34px;}
   .quote-card p{
@@ -469,11 +469,12 @@
     z-index:2;
   }
   .road-card{
-    position:absolute; width:46%; padding:18px; transform:translateY(-50%); z-index:2;
-    display:flex; gap:14px; align-items:flex-start;
+    position:absolute; width:46%; padding:20px 22px 20px 64px; transform:translateY(-50%); z-index:2;
   }
   .road-thumb{
-    width:60px; height:60px; border-radius:12px; object-fit:cover; flex:0 0 auto;
+    position:absolute; left:-28px; top:50%; transform:translateY(-50%);
+    width:84px; height:84px; border-radius:14px; object-fit:cover;
+    border:3px solid #fff; box-shadow:0 6px 18px rgba(16,36,28,0.22); z-index:3;
   }
   .road-text{min-width:0;}
   .road-card .yr{
@@ -492,52 +493,86 @@
   }
 </style>
 <style>
-  /* SOLUTIONS HERO — video + text side by side */
-  .sol-hero{padding:150px 0 70px;}
-  .sol-hero-grid{display:grid; grid-template-columns:1.05fr 0.95fr; gap:48px; align-items:center;}
+  /* SOLUTIONS HERO — title above, left-aligned; video below */
+  .sol-hero{padding:150px 0 60px;}
+  .sol-hero-text{max-width:640px; margin-bottom:36px;}
   .sol-video-wrap{
-    border-radius:20px; overflow:hidden; position:relative; aspect-ratio:16/10;
-    box-shadow:0 8px 32px rgba(16,36,28,0.12);
+    border-radius:16px; overflow:hidden; position:relative; max-width:760px;
+    aspect-ratio:16/9; box-shadow:0 8px 32px rgba(16,36,28,0.14);
+    cursor:pointer;
   }
-  .sol-video-wrap video{width:100%; height:100%; object-fit:cover; display:block;}
+  .sol-video-wrap img{width:100%; height:100%; object-fit:cover; display:block;}
+  .sol-video-play{
+    position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
+    background:rgba(0,0,0,0.18);
+  }
+  .sol-video-play span{
+    width:64px; height:64px; border-radius:50%; background:rgba(255,255,255,0.92);
+    display:flex; align-items:center; justify-content:center; font-size:22px; color:var(--ink);
+    box-shadow:0 4px 16px rgba(0,0,0,0.25);
+  }
   .sol-video-cap{
     font-family:'IBM Plex Mono',monospace; font-size:11.5px; color:var(--ink-muted);
-    margin-top:10px; text-align:center;
-  }
-  @media (max-width:900px){
-    .sol-hero-grid{grid-template-columns:1fr;}
+    margin-top:10px;
   }
 
-  /* PROCESS FLOW — Agri-waste to Bio-butanol (detailed pipeline) */
-  .flow-row{display:grid; grid-template-columns:repeat(5,1fr); gap:1px; background:var(--hairline); border-radius:16px; overflow:hidden; margin-top:48px;}
-  .flow-step{background:var(--paper); padding:24px 18px; text-align:center; position:relative;}
+  /* PROCESS FLOW & PIPELINE — flat literal diagram style (no glass), matching reference */
+  .diagram-block{
+    background:#EAF1EC; border-radius:18px; overflow:hidden; margin-top:48px;
+  }
+  .diagram-title{
+    background:#0E2A1C; color:#fff; padding:18px 28px;
+    font-family:'Fraunces',serif; font-size:20px; font-weight:500;
+  }
+  .diagram-body{padding:36px 28px;}
+
+  .flow-row{display:grid; grid-template-columns:repeat(5,1fr); gap:14px;}
+  .flow-step{background:#BFD8C4; border-radius:10px; padding:20px 14px; text-align:center; position:relative;}
   .flow-num{
-    width:26px; height:26px; border-radius:50%; margin:0 auto 14px;
-    background:linear-gradient(90deg, var(--green), var(--blue)); color:#fff;
+    width:24px; height:24px; border-radius:50%; margin:0 auto 12px;
+    background:#0E2A1C; color:#fff;
     display:flex; align-items:center; justify-content:center;
-    font-family:'IBM Plex Mono',monospace; font-size:12px; font-weight:600;
+    font-family:'IBM Plex Mono',monospace; font-size:11px; font-weight:600;
   }
   .flow-icon{font-size:24px; margin-bottom:10px;}
-  .flow-step h4{font-size:13.5px; font-weight:500; line-height:1.3;}
+  .flow-step h4{font-size:12.5px; font-weight:600; line-height:1.3; color:#0E2A1C;}
   .flow-step:not(:last-child)::after{
-    content:'→'; position:absolute; right:-2px; top:50%; transform:translateY(-50%);
-    color:var(--ink-muted); font-size:14px; z-index:2;
+    content:''; position:absolute; right:-10px; top:50%; width:16px; height:0;
+    border-top:2px dashed #5C7268; transform:translateY(-50%); z-index:2;
   }
-  .flow-byproducts{display:flex; gap:16px; flex-wrap:wrap; justify-content:center; margin-top:28px;}
+  .flow-byproducts{display:flex; gap:14px; flex-wrap:wrap; justify-content:center; margin-top:26px;}
   .flow-byproduct{
-    display:flex; align-items:center; gap:8px; padding:10px 16px; border-radius:999px;
-    font-family:'IBM Plex Mono',monospace; font-size:11.5px; color:var(--ink-muted);
+    display:flex; align-items:center; gap:8px; padding:9px 16px; border-radius:8px;
+    font-family:'IBM Plex Mono',monospace; font-size:11px; color:#0E2A1C;
+    background:#fff; border:1px dashed #5C7268;
   }
-  .flow-outputs{display:flex; gap:16px; justify-content:center; margin-top:20px;}
+  .flow-outputs{display:flex; gap:14px; justify-content:center; margin-top:18px;}
   .flow-output{
-    display:flex; align-items:center; gap:10px; padding:14px 24px; border-radius:14px;
-    font-family:'Fraunces',serif; font-size:16px;
+    display:flex; align-items:center; gap:10px; padding:12px 22px; border-radius:10px;
+    font-family:'Fraunces',serif; font-size:15px; background:#0E2A1C; color:#fff;
   }
   @media (max-width:760px){
-    .flow-row{grid-template-columns:1fr; }
-    .flow-step:not(:last-child)::after{content:'↓'; right:50%; top:auto; bottom:-2px; transform:translateX(50%);}
+    .flow-row{grid-template-columns:1fr;}
+    .flow-step:not(:last-child)::after{content:''; right:50%; top:auto; bottom:-9px; width:0; height:14px; border-top:none; border-left:2px dashed #5C7268; transform:translateX(50%);}
+  }
+
+  /* PIPELINE — flat circular-style diagram */
+  .pipe-flat-row{display:flex; align-items:stretch; gap:0; flex-wrap:wrap; justify-content:center;}
+  .pipe-flat-node{
+    background:#fff; border:1px dashed #5C7268; border-radius:10px; padding:18px 16px;
+    text-align:center; min-width:130px; flex:1; margin:6px;
+  }
+  .pipe-flat-node.center{background:#BFD8C4; border:none;}
+  .pipe-flat-icon{font-size:24px; margin-bottom:8px;}
+  .pipe-flat-node h4{font-size:13px; font-weight:600; color:#0E2A1C; margin-bottom:4px;}
+  .pipe-flat-node p{font-size:11px; color:#5C7268;}
+  .pipe-flat-arrow{display:flex; align-items:center; justify-content:center; color:#5C7268; font-size:16px; padding:0 4px;}
+  @media (max-width:760px){
+    .pipe-flat-row{flex-direction:column;}
+    .pipe-flat-arrow{transform:rotate(90deg);}
   }
 </style>
+
 
 </head>
 <body>
@@ -584,8 +619,8 @@
         <div class="marquee-item"><img src="https://static.wixstatic.com/media/08b376_d3a809eaa3ea46348838768adb0eea5d~mv2.png" alt="CNA"></div>
         <div class="marquee-item"><img src="https://static.wixstatic.com/media/08b376_58a15b9d7ad74d5d85301247c3af7dce~mv2.png" alt="Lianhe Zaobao"></div>
         <div class="marquee-item"><img src="https://static.wixstatic.com/media/08b376_ed6eb443695341d09707a3bba1121170~mv2.png" alt="Press feature"></div>
-        <div class="marquee-item"><img src="https://static.wixstatic.com/media/08b376_755a0def94c248a1a8b83a196c13202a~mv2.png" alt="S&P Global"></div>
-        <div class="marquee-item"><img src="https://static.wixstatic.com/media/08b376_2a62f22cd9914c999ad7b6f33322c4dc~mv2.png" alt="Temasek Foundation"></div>
+        <div class="marquee-item"><img src="https://static.wixstatic.com/media/08b376_755a0def94c248a1a8b83a196c13202a~mv2.png" alt="S&P Global" style="max-height:48px;"></div>
+        <div class="marquee-item"><img src="https://static.wixstatic.com/media/08b376_2a62f22cd9914c999ad7b6f33322c4dc~mv2.png" alt="Temasek Foundation" style="max-height:50px;"></div>
         <div class="marquee-item"><img src="https://static.wixstatic.com/media/08b376_dbf6c1a588ac423e80c7cdedf2f761d9~mv2.png" alt="Universiti Malaya"></div>
         <div class="marquee-item"><img src="https://static.wixstatic.com/media/08b376_da7f9732d69748f6bb9e0180321b959c~mv2.png" alt="NUS GRIP"></div>
         <div class="marquee-item"><img src="https://static.wixstatic.com/media/08b376_0d3e67ab4afb41fc8055c718e49d54f8~mv2.png" alt="PIER71 and MPA"></div>
@@ -594,8 +629,8 @@
         <div class="marquee-item"><img src="https://static.wixstatic.com/media/08b376_d3a809eaa3ea46348838768adb0eea5d~mv2.png" alt="CNA"></div>
         <div class="marquee-item"><img src="https://static.wixstatic.com/media/08b376_58a15b9d7ad74d5d85301247c3af7dce~mv2.png" alt="Lianhe Zaobao"></div>
         <div class="marquee-item"><img src="https://static.wixstatic.com/media/08b376_ed6eb443695341d09707a3bba1121170~mv2.png" alt="Press feature"></div>
-        <div class="marquee-item"><img src="https://static.wixstatic.com/media/08b376_755a0def94c248a1a8b83a196c13202a~mv2.png" alt="S&P Global"></div>
-        <div class="marquee-item"><img src="https://static.wixstatic.com/media/08b376_2a62f22cd9914c999ad7b6f33322c4dc~mv2.png" alt="Temasek Foundation"></div>
+        <div class="marquee-item"><img src="https://static.wixstatic.com/media/08b376_755a0def94c248a1a8b83a196c13202a~mv2.png" alt="S&P Global" style="max-height:48px;"></div>
+        <div class="marquee-item"><img src="https://static.wixstatic.com/media/08b376_2a62f22cd9914c999ad7b6f33322c4dc~mv2.png" alt="Temasek Foundation" style="max-height:50px;"></div>
         <div class="marquee-item"><img src="https://static.wixstatic.com/media/08b376_dbf6c1a588ac423e80c7cdedf2f761d9~mv2.png" alt="Universiti Malaya"></div>
         <div class="marquee-item"><img src="https://static.wixstatic.com/media/08b376_da7f9732d69748f6bb9e0180321b959c~mv2.png" alt="NUS GRIP"></div>
         <div class="marquee-item"><img src="https://static.wixstatic.com/media/08b376_0d3e67ab4afb41fc8055c718e49d54f8~mv2.png" alt="PIER71 and MPA"></div>
@@ -635,7 +670,7 @@
   </div>
 </section>
 
-<!-- OUR JOURNEY — winding road map with photos -->
+<!-- OUR JOURNEY — winding road map with outside photo badges -->
 <section id="journey" class="process">
   <div class="wrap">
     <div class="section-head">
@@ -662,7 +697,7 @@
 </svg>
   <div class="road-marker" style="left:20%; top:7.7%; background:#1FA463;"></div>
   <div class="road-card glass" style="left:24%; top:7.7%;">
-    <img class="road-thumb" src="https://static.wixstatic.com/media/08b376_6db818335f9a4fd1aa4e0dc1fcf1cb24~mv2.jpg" alt="Founded">
+    <img class="road-thumb" style="left:-28px;" src="https://static.wixstatic.com/media/08b376_17342a09b76d4ef1a8a29c4122c58024~mv2.jpg" alt="Founded">
     <div class="road-text">
       <div class="yr">2021</div>
       <h3>Founded</h3>
@@ -671,7 +706,7 @@
   </div>
   <div class="road-marker" style="left:80%; top:26.2%; background:#19A07A;"></div>
   <div class="road-card glass" style="right:24%; top:26.2%;">
-    <img class="road-thumb" src="https://static.wixstatic.com/media/08b376_4e58df7e859e40448d31d1078344d235~mv2.jpeg" alt="Smart Port Challenge">
+    <img class="road-thumb" style="right:-28px; left:auto;" src="https://static.wixstatic.com/media/08b376_4e58df7e859e40448d31d1078344d235~mv2.jpeg" alt="Smart Port Challenge">
     <div class="road-text">
       <div class="yr">2022</div>
       <h3>Smart Port Challenge</h3>
@@ -680,7 +715,7 @@
   </div>
   <div class="road-marker" style="left:20%; top:44.6%; background:#159892;"></div>
   <div class="road-card glass" style="left:24%; top:44.6%;">
-    <img class="road-thumb" src="https://static.wixstatic.com/media/08b376_b152e62bb6e944b6884d27c5794f5620~mv2.png" alt="Patents &amp; ISCC">
+    <img class="road-thumb" style="left:-28px;" src="https://static.wixstatic.com/media/08b376_b152e62bb6e944b6884d27c5794f5620~mv2.png" alt="Patents &amp; ISCC">
     <div class="road-text">
       <div class="yr">2023</div>
       <h3>Patents &amp; ISCC</h3>
@@ -689,7 +724,7 @@
   </div>
   <div class="road-marker" style="left:80%; top:63.1%; background:#1690AB;"></div>
   <div class="road-card glass" style="right:24%; top:63.1%;">
-    <img class="road-thumb" src="https://static.wixstatic.com/media/08b376_e146e559a7854d9a97005832dbdab930~mv2.jpg" alt="Angel funding &amp; plant">
+    <img class="road-thumb" style="right:-28px; left:auto;" src="https://static.wixstatic.com/media/08b376_e146e559a7854d9a97005832dbdab930~mv2.jpg" alt="Angel funding &amp; plant">
     <div class="road-text">
       <div class="yr">2024</div>
       <h3>Angel funding &amp; plant</h3>
@@ -698,7 +733,7 @@
   </div>
   <div class="road-marker" style="left:20%; top:81.5%; background:#1F8AE0;"></div>
   <div class="road-card glass" style="left:24%; top:81.5%;">
-    <img class="road-thumb" src="https://static.wixstatic.com/media/08b376_87a1bb97ab784f63b91c84340b6912c9~mv2.png" alt="Strategic partnership">
+    <img class="road-thumb" style="left:-28px;" src="https://static.wixstatic.com/media/08b376_87a1bb97ab784f63b91c84340b6912c9~mv2.png" alt="Strategic partnership">
     <div class="road-text">
       <div class="yr">2025</div>
       <h3>Strategic partnership</h3>
@@ -710,7 +745,7 @@
   <div class="tl-item">
     <div class="tl-year">2021</div>
     <div><h3>Founded</h3><p>Green COP founded in Singapore with a mission to convert biowaste into biofuels.</p>
-    <img class="tl-thumb" src="https://static.wixstatic.com/media/08b376_6db818335f9a4fd1aa4e0dc1fcf1cb24~mv2.jpg" alt="Founded"></div>
+    <img class="tl-thumb" src="https://static.wixstatic.com/media/08b376_17342a09b76d4ef1a8a29c4122c58024~mv2.jpg" alt="Founded"></div>
   </div>
   <div class="tl-item">
     <div class="tl-year">2022</div>
