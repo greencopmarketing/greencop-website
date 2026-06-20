@@ -437,6 +437,48 @@
     .journey-card{min-width:200px;}
   }
 </style>
+<style>
+  /* LinkedIn link on team cards */
+  .leader-info{position:relative;}
+  .li-link{
+    position:absolute; top:16px; right:16px; width:30px; height:30px; border-radius:50%;
+    background:rgba(255,255,255,0.85); display:flex; align-items:center; justify-content:center;
+    box-shadow:0 2px 8px rgba(16,36,28,0.15); transition:transform .15s;
+  }
+  .li-link:hover{transform:scale(1.08);}
+  .li-link svg{width:15px; height:15px;}
+</style>
+<style>
+  /* OUR JOURNEY — winding road/path map */
+  .journey-road{
+    position:relative; width:100%; max-width:760px; margin:56px auto 0;
+    aspect-ratio:800/1300;
+  }
+  .journey-road svg{position:absolute; inset:0; width:100%; height:100%; z-index:1;}
+  .road-marker{
+    position:absolute; width:16px; height:16px; border-radius:50%;
+    transform:translate(-50%,-50%);
+    box-shadow:0 0 0 6px rgba(255,255,255,0.85), 0 0 18px rgba(31,138,224,0.35);
+    z-index:2;
+  }
+  .road-card{
+    position:absolute; width:44%; padding:20px 22px; transform:translateY(-50%); z-index:2;
+  }
+  .road-card .yr{
+    font-family:'Fraunces',serif; font-size:28px; margin-bottom:6px;
+    background:linear-gradient(90deg, var(--green-deep), var(--blue-deep));
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+  }
+  .road-card h3{font-size:16px; margin-bottom:6px; font-weight:500;}
+  .road-card p{font-size:13px; color:var(--ink-muted); line-height:1.5;}
+
+  .journey-fallback{display:none;}
+
+  @media (max-width:760px){
+    .journey-road{display:none;}
+    .journey-fallback{display:block; margin-top:8px;}
+  }
+</style>
 
 </head>
 <body>
@@ -530,7 +572,7 @@
   </div>
 </section>
 
-<!-- OUR JOURNEY (still here for now — redesign pending) -->
+<!-- OUR JOURNEY — winding road map -->
 <section id="journey" class="process">
   <div class="wrap">
     <div class="section-head">
@@ -538,35 +580,76 @@
         <span class="eyebrow">Our journey</span>
         <h2>From founding to scale.</h2>
       </div>
-      <p class="lede">Drag or scroll sideways to follow the milestones.</p>
     </div>
-    <div class="journey-scroll">
-      <div class="journey-card glass">
-        <div class="yr">2021</div>
-        <h3>Founded</h3>
-        <p>Green COP founded in Singapore with a mission to convert biowaste into biofuels.</p>
-      </div>
-      <div class="journey-card glass">
-        <div class="yr">2022</div>
-        <h3>Smart Port Challenge</h3>
-        <p>Recognised at the MPA &amp; NUS Enterprise Smart Port Challenge.</p>
-      </div>
-      <div class="journey-card glass">
-        <div class="yr">2023</div>
-        <h3>Patents &amp; ISCC</h3>
-        <p>Secured patents for our two-step biofuel process and achieved ISCC certification.</p>
-      </div>
-      <div class="journey-card glass">
-        <div class="yr">2024</div>
-        <h3>Angel funding &amp; plant</h3>
-        <p>Closed an angel round and established a pre-commercial plant in Johor, Malaysia.</p>
-      </div>
-      <div class="journey-card glass">
-        <div class="yr">2025</div>
-        <h3>Strategic partnership</h3>
-        <p>Partnered with a leading palm oil group to commercialise sustainable marine fuels at scale.</p>
-      </div>
+    <div class="journey-road">
+<svg viewBox="0 0 800 1300" preserveAspectRatio="none">
+  <defs>
+    <linearGradient id="roadGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1FA463"/>
+      <stop offset="100%" stop-color="#1F8AE0"/>
+    </linearGradient>
+  </defs>
+  <path d="M160,100 C450,180 450,260 640,340 C450,420 450,500 160,580 C450,660 450,740 640,820 C450,900 450,980 160,1060"
+        fill="none" stroke="url(#roadGrad)" stroke-width="3" stroke-linecap="round" opacity="0.45"/>
+    <circle cx="160" cy="100.10000000000001" r="9" fill="#1FA463"/>
+    <circle cx="640" cy="340.59999999999997" r="9" fill="#19A07A"/>
+    <circle cx="160" cy="579.8000000000001" r="9" fill="#159892"/>
+    <circle cx="640" cy="820.3000000000001" r="9" fill="#1690AB"/>
+    <circle cx="160" cy="1059.5" r="9" fill="#1F8AE0"/>
+</svg>
+  <div class="road-marker" style="left:20%; top:7.7%; background:#1FA463;"></div>
+  <div class="road-card glass" style="left:26%; top:7.7%;">
+    <div class="yr">2021</div>
+    <h3>Founded</h3>
+    <p>Green COP founded in Singapore with a mission to convert biowaste into biofuels.</p>
+  </div>
+  <div class="road-marker" style="left:80%; top:26.2%; background:#19A07A;"></div>
+  <div class="road-card glass" style="right:26%; top:26.2%;">
+    <div class="yr">2022</div>
+    <h3>Smart Port Challenge</h3>
+    <p>Recognised at the MPA &amp; NUS Enterprise Smart Port Challenge.</p>
+  </div>
+  <div class="road-marker" style="left:20%; top:44.6%; background:#159892;"></div>
+  <div class="road-card glass" style="left:26%; top:44.6%;">
+    <div class="yr">2023</div>
+    <h3>Patents &amp; ISCC</h3>
+    <p>Secured patents for our two-step biofuel process and achieved ISCC certification.</p>
+  </div>
+  <div class="road-marker" style="left:80%; top:63.1%; background:#1690AB;"></div>
+  <div class="road-card glass" style="right:26%; top:63.1%;">
+    <div class="yr">2024</div>
+    <h3>Angel funding &amp; plant</h3>
+    <p>Closed an angel round and established a pre-commercial plant in Johor, Malaysia.</p>
+  </div>
+  <div class="road-marker" style="left:20%; top:81.5%; background:#1F8AE0;"></div>
+  <div class="road-card glass" style="left:26%; top:81.5%;">
+    <div class="yr">2025</div>
+    <h3>Strategic partnership</h3>
+    <p>Partnered with a leading palm oil group to commercialise sustainable marine fuels at scale.</p>
+  </div>
     </div>
+    <div class="journey-fallback timeline tl-rail">
+  <div class="tl-item">
+    <div class="tl-year">2021</div>
+    <div><h3>Founded</h3><p>Green COP founded in Singapore with a mission to convert biowaste into biofuels.</p></div>
+  </div>
+  <div class="tl-item">
+    <div class="tl-year">2022</div>
+    <div><h3>Smart Port Challenge</h3><p>Recognised at the MPA &amp; NUS Enterprise Smart Port Challenge.</p></div>
+  </div>
+  <div class="tl-item">
+    <div class="tl-year">2023</div>
+    <div><h3>Patents &amp; ISCC</h3><p>Secured patents for our two-step biofuel process and achieved ISCC certification.</p></div>
+  </div>
+  <div class="tl-item">
+    <div class="tl-year">2024</div>
+    <div><h3>Angel funding &amp; plant</h3><p>Closed an angel round and established a pre-commercial plant in Johor, Malaysia.</p></div>
+  </div>
+  <div class="tl-item">
+    <div class="tl-year">2025</div>
+    <div><h3>Strategic partnership</h3><p>Partnered with a leading palm oil group to commercialise sustainable marine fuels at scale.</p></div>
+  </div>
+</div>
   </div>
 </section>
 
