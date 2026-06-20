@@ -120,17 +120,12 @@
   }
   .hero-scrim{
     position:absolute; inset:0; z-index:1;
-    background:linear-gradient(180deg, rgba(8,16,12,0.15) 0%, rgba(8,16,12,0.35) 55%, var(--bg) 100%);
+    background:linear-gradient(180deg, rgba(8,16,12,0.20) 0%, rgba(8,16,12,0.42) 100%);
   }
   .hero .wrap{z-index:2;}
   .hero-card{
-    padding:0;
-    max-width:680px;
-    background:none;
-    border:none;
-    box-shadow:none;
-    backdrop-filter:none;
-    -webkit-backdrop-filter:none;
+    padding:44px 40px;
+    max-width:640px;
   }
   .hero .eyebrow{
     margin-bottom:22px; display:inline-block;
@@ -140,17 +135,15 @@
   .hero h1{
     font-size:clamp(36px,5.4vw,62px);
     margin-bottom:24px;
-    color:#FFFFFF;
-    text-shadow:0 2px 24px rgba(0,0,0,0.25);
+    color:var(--ink);
   }
   .hero h1 em{
     font-style:italic;
-    background:linear-gradient(90deg, #6FE3A8, #6FC2F2);
+    background:linear-gradient(90deg, var(--green-deep), var(--blue-deep));
     -webkit-background-clip:text; background-clip:text; color:transparent;
   }
   .hero p{
-    max-width:520px; color:rgba(255,255,255,0.86); font-size:18px; margin-bottom:36px;
-    text-shadow:0 1px 12px rgba(0,0,0,0.2);
+    max-width:520px; color:var(--ink-muted); font-size:18px; margin-bottom:36px;
   }
   .btn-row{display:flex; gap:16px; flex-wrap:wrap;}
   .btn{
@@ -170,12 +163,6 @@
     border:1px solid var(--glass-border); color:var(--ink);
   }
   .btn-ghost:hover{background:var(--glass-fill-strong);}
-  .hero-ghost{
-    background:rgba(255,255,255,0.12);
-    border:1px solid rgba(255,255,255,0.4);
-    color:#fff;
-  }
-  .hero-ghost:hover{background:rgba(255,255,255,0.2);}
 
   /* SECTION generic */
   section{padding:96px 0; position:relative;}
@@ -366,6 +353,38 @@
     .tl-item{grid-template-columns:1fr; gap:6px;}
   }
 </style>
+<style>
+  /* TEAM PAGE REDESIGN */
+  .leader-row{display:grid; grid-template-columns:repeat(4,1fr); gap:22px; margin-top:8px;}
+  .leader-card{padding:0; overflow:hidden; position:relative;}
+  .leader-card img{width:100%; aspect-ratio:3/4; object-fit:cover; display:block;}
+  .leader-info{padding:20px 22px 24px;}
+  .leader-tag{
+    display:inline-block; font-family:'IBM Plex Mono',monospace; font-size:10.5px;
+    text-transform:uppercase; letter-spacing:.06em; padding:4px 10px; border-radius:999px;
+    background:linear-gradient(90deg, rgba(31,164,99,0.16), rgba(31,138,224,0.16));
+    color:var(--green-deep); margin-bottom:10px;
+  }
+  .leader-info .name{font-family:'Fraunces',serif; font-size:19px; margin-bottom:2px;}
+  .leader-info .role{font-family:'IBM Plex Mono',monospace; font-size:11.5px; color:var(--ink-muted); text-transform:uppercase; letter-spacing:.05em;}
+
+  .ext-divider{display:flex; align-items:center; gap:16px; margin:64px 0 32px;}
+  .ext-divider .eyebrow{white-space:nowrap; margin-bottom:0;}
+  .ext-divider .line{flex:1; height:1px; background:linear-gradient(90deg, var(--green), var(--blue)); opacity:.35;}
+
+  .ext-row{display:flex; flex-wrap:wrap; gap:16px;}
+  .ext-pill{
+    display:flex; align-items:center; gap:12px; padding:10px 18px 10px 10px;
+    border-radius:999px;
+  }
+  .ext-pill img{width:46px; height:46px; border-radius:50%; object-fit:cover;}
+  .ext-pill .name{font-family:'Fraunces',serif; font-size:14.5px; line-height:1.2;}
+  .ext-pill .role{font-family:'IBM Plex Mono',monospace; font-size:10px; color:var(--ink-muted); text-transform:uppercase; letter-spacing:.04em;}
+
+  @media (max-width:900px){
+    .leader-row{grid-template-columns:repeat(2,1fr);}
+  }
+</style>
 
 </head>
 <body>
@@ -379,7 +398,7 @@
       <li><a href="index.html#story">Story</a></li>
       <li><a href="solutions.html">Solutions</a></li>
       <li><a href="team.html">Team</a></li>
-      <li><a href="index.html#impact">Impact</a></li>
+      <li><a href="index.html#journey">Journey</a></li>
     </ul>
     <a href="index.html#contact" class="nav-cta">Get in touch</a>
   </div>
@@ -391,13 +410,13 @@
   <video class="hero-video" id="heroVideo" autoplay muted loop playsinline poster="https://static.wixstatic.com/media/08b376_033fedc694984fb1a7e0dc18f01efa97~mv2.png"></video>
   <div class="hero-scrim"></div>
   <div class="wrap">
-    <div class="hero-card">
+    <div class="hero-card glass">
       <span class="eyebrow">Singapore · Deep-tech biofuels</span>
       <h1>We turn biowaste into fuel that <em>cleans up</em> the harbour.</h1>
       <p>Green COP's patented pretreatment and fermentation process converts plant-based waste into stable, low-emission biofuel — built for Singapore's maritime and transportation sectors.</p>
       <div class="btn-row">
         <a href="solutions.html" class="btn btn-primary">See the technology</a>
-        <a href="#contact" class="btn btn-ghost hero-ghost">Talk to our team</a>
+        <a href="#contact" class="btn btn-ghost">Talk to our team</a>
       </div>
     </div>
   </div>
@@ -433,68 +452,8 @@
   </div>
 </section>
 
-<!-- OUR IMPACT (formerly How It Works) -->
-<section id="impact" class="process">
-  <div class="wrap">
-    <div class="section-head">
-      <div>
-        <span class="eyebrow">Our impact</span>
-        <h2>Biowaste in. Stable, drop-in biofuel out.</h2>
-      </div>
-      <p class="lede">Our process runs at ambient temperature and atmospheric pressure — energy-efficient by design, and scalable to diverse feedstocks.</p>
-    </div>
-
-    <div class="process-chain glass">
-      <div class="chain-line"></div>
-      <div class="chain-node">
-        <div class="chain-dot"></div>
-        <div class="chain-label">Input</div>
-        <div class="chain-name">Biowaste</div>
-      </div>
-      <div class="chain-node">
-        <div class="chain-dot"></div>
-        <div class="chain-label">Intermediate</div>
-        <div class="chain-name">Sugars</div>
-      </div>
-      <div class="chain-node">
-        <div class="chain-dot"></div>
-        <div class="chain-label">Output</div>
-        <div class="chain-name">Biofuel + Lignin</div>
-      </div>
-    </div>
-
-    <div class="process-steps">
-      <div class="step glass">
-        <span class="eyebrow">Step 01 — Patented</span>
-        <h3>Pretreatment</h3>
-        <p>Breaks down raw plant-based waste into fermentable sugars, accommodating a wide range of feedstocks.</p>
-      </div>
-      <div class="step glass">
-        <span class="eyebrow">Step 02 — Patented</span>
-        <h3>Aerobic fermentation</h3>
-        <p>Converts sugars into biofuel and soluble lignin, run under safe, energy-efficient ambient conditions.</p>
-      </div>
-    </div>
-
-    <div class="stat-row">
-      <div class="stat glass">
-        <div class="stat-num" data-count="24" data-suffix="mo+">0mo+</div>
-        <div class="stat-label">Shelf life beyond industry norms, for unmatched stability in storage</div>
-      </div>
-      <div class="stat glass">
-        <div class="stat-num" data-count="30" data-prefix="−" data-suffix="%">−0%</div>
-        <div class="stat-label">Lower NOx emissions versus conventional marine fuel</div>
-      </div>
-      <div class="stat glass">
-        <div class="stat-num" data-count="2" data-suffix=" steps">0 steps</div>
-        <div class="stat-label">Patented process from raw biowaste to finished biofuel</div>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- CERTIFIED / SUPPORTED -->
-<section id="recognition">
+<section id="recognition" class="process">
   <div class="wrap">
     <span class="eyebrow">Recognised by</span>
     <h2 style="margin-bottom:8px;">Backed by the people who know fuel and ports best.</h2>
@@ -517,8 +476,42 @@
   </div>
 </section>
 
+<!-- OUR JOURNEY (moved here, right before Contact) -->
+<section id="journey">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <span class="eyebrow">Our journey</span>
+        <h2>From founding to scale.</h2>
+      </div>
+    </div>
+    <div class="timeline tl-rail">
+      <div class="tl-item">
+        <div class="tl-year">2021</div>
+        <div><h3>Founded</h3><p>Green COP founded in Singapore with a mission to convert biowaste into biofuels.</p></div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-year">2022</div>
+        <div><h3>Smart Port Challenge</h3><p>Recognised at the MPA &amp; NUS Enterprise Smart Port Challenge.</p></div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-year">2023</div>
+        <div><h3>Patents &amp; ISCC</h3><p>Secured patents for our two-step biofuel process and achieved ISCC certification.</p></div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-year">2024</div>
+        <div><h3>Angel funding &amp; plant</h3><p>Closed an angel investment round and established a pre-commercial plant in Johor, Malaysia.</p></div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-year">2025</div>
+        <div><h3>Strategic partnership</h3><p>Partnered with a leading palm oil group to help commercialise sustainable marine fuels at scale.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- CONTACT -->
-<section id="contact">
+<section id="contact" class="process">
   <div class="wrap">
     <div class="contact-grid">
       <div>
@@ -556,37 +549,6 @@
       hls.loadSource(src);
       hls.attachMedia(video);
     }
-  })();
-</script>
-<script>
-  (function(){
-    var nums = document.querySelectorAll('.stat-num[data-count]');
-    var done = new WeakSet();
-    function animate(el){
-      var target = parseFloat(el.getAttribute('data-count'));
-      var prefix = el.getAttribute('data-prefix') || '';
-      var suffix = el.getAttribute('data-suffix') || '';
-      var duration = 1400;
-      var start = null;
-      function step(ts){
-        if(!start) start = ts;
-        var progress = Math.min((ts - start) / duration, 1);
-        var eased = 1 - Math.pow(1 - progress, 3);
-        var value = Math.round(eased * target);
-        el.textContent = prefix + value + suffix;
-        if(progress < 1) requestAnimationFrame(step);
-      }
-      requestAnimationFrame(step);
-    }
-    var observer = new IntersectionObserver(function(entries){
-      entries.forEach(function(entry){
-        if(entry.isIntersecting && !done.has(entry.target)){
-          done.add(entry.target);
-          animate(entry.target);
-        }
-      });
-    }, {threshold:0.4});
-    nums.forEach(function(el){ observer.observe(el); });
   })();
 </script>
 </body>

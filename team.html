@@ -120,17 +120,12 @@
   }
   .hero-scrim{
     position:absolute; inset:0; z-index:1;
-    background:linear-gradient(180deg, rgba(8,16,12,0.15) 0%, rgba(8,16,12,0.35) 55%, var(--bg) 100%);
+    background:linear-gradient(180deg, rgba(8,16,12,0.20) 0%, rgba(8,16,12,0.42) 100%);
   }
   .hero .wrap{z-index:2;}
   .hero-card{
-    padding:0;
-    max-width:680px;
-    background:none;
-    border:none;
-    box-shadow:none;
-    backdrop-filter:none;
-    -webkit-backdrop-filter:none;
+    padding:44px 40px;
+    max-width:640px;
   }
   .hero .eyebrow{
     margin-bottom:22px; display:inline-block;
@@ -140,17 +135,15 @@
   .hero h1{
     font-size:clamp(36px,5.4vw,62px);
     margin-bottom:24px;
-    color:#FFFFFF;
-    text-shadow:0 2px 24px rgba(0,0,0,0.25);
+    color:var(--ink);
   }
   .hero h1 em{
     font-style:italic;
-    background:linear-gradient(90deg, #6FE3A8, #6FC2F2);
+    background:linear-gradient(90deg, var(--green-deep), var(--blue-deep));
     -webkit-background-clip:text; background-clip:text; color:transparent;
   }
   .hero p{
-    max-width:520px; color:rgba(255,255,255,0.86); font-size:18px; margin-bottom:36px;
-    text-shadow:0 1px 12px rgba(0,0,0,0.2);
+    max-width:520px; color:var(--ink-muted); font-size:18px; margin-bottom:36px;
   }
   .btn-row{display:flex; gap:16px; flex-wrap:wrap;}
   .btn{
@@ -170,12 +163,6 @@
     border:1px solid var(--glass-border); color:var(--ink);
   }
   .btn-ghost:hover{background:var(--glass-fill-strong);}
-  .hero-ghost{
-    background:rgba(255,255,255,0.12);
-    border:1px solid rgba(255,255,255,0.4);
-    color:#fff;
-  }
-  .hero-ghost:hover{background:rgba(255,255,255,0.2);}
 
   /* SECTION generic */
   section{padding:96px 0; position:relative;}
@@ -366,11 +353,39 @@
     .tl-item{grid-template-columns:1fr; gap:6px;}
   }
 </style>
-
 <style>
-  .team-grid-page{display:grid; grid-template-columns:repeat(5,1fr); gap:22px;}
-  @media (max-width:900px){ .team-grid-page{grid-template-columns:repeat(2,1fr);} }
+  /* TEAM PAGE REDESIGN */
+  .leader-row{display:grid; grid-template-columns:repeat(4,1fr); gap:22px; margin-top:8px;}
+  .leader-card{padding:0; overflow:hidden; position:relative;}
+  .leader-card img{width:100%; aspect-ratio:3/4; object-fit:cover; display:block;}
+  .leader-info{padding:20px 22px 24px;}
+  .leader-tag{
+    display:inline-block; font-family:'IBM Plex Mono',monospace; font-size:10.5px;
+    text-transform:uppercase; letter-spacing:.06em; padding:4px 10px; border-radius:999px;
+    background:linear-gradient(90deg, rgba(31,164,99,0.16), rgba(31,138,224,0.16));
+    color:var(--green-deep); margin-bottom:10px;
+  }
+  .leader-info .name{font-family:'Fraunces',serif; font-size:19px; margin-bottom:2px;}
+  .leader-info .role{font-family:'IBM Plex Mono',monospace; font-size:11.5px; color:var(--ink-muted); text-transform:uppercase; letter-spacing:.05em;}
+
+  .ext-divider{display:flex; align-items:center; gap:16px; margin:64px 0 32px;}
+  .ext-divider .eyebrow{white-space:nowrap; margin-bottom:0;}
+  .ext-divider .line{flex:1; height:1px; background:linear-gradient(90deg, var(--green), var(--blue)); opacity:.35;}
+
+  .ext-row{display:flex; flex-wrap:wrap; gap:16px;}
+  .ext-pill{
+    display:flex; align-items:center; gap:12px; padding:10px 18px 10px 10px;
+    border-radius:999px;
+  }
+  .ext-pill img{width:46px; height:46px; border-radius:50%; object-fit:cover;}
+  .ext-pill .name{font-family:'Fraunces',serif; font-size:14.5px; line-height:1.2;}
+  .ext-pill .role{font-family:'IBM Plex Mono',monospace; font-size:10px; color:var(--ink-muted); text-transform:uppercase; letter-spacing:.04em;}
+
+  @media (max-width:900px){
+    .leader-row{grid-template-columns:repeat(2,1fr);}
+  }
 </style>
+
 </head>
 <body>
 <div class="blob blob-1"></div>
@@ -383,7 +398,7 @@
       <li><a href="index.html#story">Story</a></li>
       <li><a href="solutions.html">Solutions</a></li>
       <li><a href="team.html">Team</a></li>
-      <li><a href="index.html#impact">Impact</a></li>
+      <li><a href="index.html#journey">Journey</a></li>
     </ul>
     <a href="index.html#contact" class="nav-cta">Get in touch</a>
   </div>
@@ -400,56 +415,93 @@
 
 <section>
   <div class="wrap">
-    <div class="team-grid-page">
-      <div class="team-card glass">
-        <img src="https://static.wixstatic.com/media/08b376_64a0bb1aec824a138031be3859c4eb22~mv2.jpg" alt="Teo Teng Seng">
-        <div class="name">Teo Teng Seng</div>
-        <div class="role">Chairman</div>
+    <div class="section-head">
+      <div>
+        <span class="eyebrow">Leadership</span>
+        <h2>The four steering the ship.</h2>
       </div>
-      <div class="team-card glass">
+    </div>
+    <div class="leader-row">
+      <div class="leader-card glass">
         <img src="https://static.wixstatic.com/media/08b376_200f742038b74dd7ad14ffc1bd93fc45~mv2.jpg" alt="Dr. Hanson Lee">
-        <div class="name">Dr. Hanson Lee</div>
-        <div class="role">Co-Founder · CEO</div>
+        <div class="leader-info">
+          <span class="leader-tag">Leadership</span>
+          <div class="name">Dr. Hanson Lee</div>
+          <div class="role">Co-Founder · CEO</div>
+        </div>
       </div>
-      <div class="team-card glass">
+      <div class="leader-card glass">
         <img src="https://static.wixstatic.com/media/08b376_07d3b7e69d7c48f08e7adcc3b13d0306~mv2.jpg" alt="Low Wang Chang">
-        <div class="name">Low Wang Chang</div>
-        <div class="role">Co-Founder · COO</div>
+        <div class="leader-info">
+          <span class="leader-tag">Leadership</span>
+          <div class="name">Low Wang Chang</div>
+          <div class="role">Co-Founder · COO</div>
+        </div>
       </div>
-      <div class="team-card glass">
+      <div class="leader-card glass">
         <img src="https://static.wixstatic.com/media/08b376_287518a8c1ff4e8c87d88f233d83bf21~mv2.jpg" alt="Sng Yee Ching">
-        <div class="name">Sng Yee Ching</div>
-        <div class="role">Co-Founder · Chief of Staff</div>
+        <div class="leader-info">
+          <span class="leader-tag">Leadership</span>
+          <div class="name">Sng Yee Ching</div>
+          <div class="role">Co-Founder · Chief of Staff</div>
+        </div>
       </div>
-      <div class="team-card glass">
+      <div class="leader-card glass">
+        <img src="https://static.wixstatic.com/media/08b376_64a0bb1aec824a138031be3859c4eb22~mv2.jpg" alt="Teo Teng Seng">
+        <div class="leader-info">
+          <span class="leader-tag">Leadership</span>
+          <div class="name">Teo Teng Seng</div>
+          <div class="role">Chairman</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ext-divider">
+      <span class="eyebrow">Advisors &amp; science</span>
+      <div class="line"></div>
+    </div>
+    <div class="ext-row">
+      <div class="ext-pill glass">
         <img src="https://static.wixstatic.com/media/08b376_9ff89c495bb84a69b8d999d05d3070d6~mv2.jpg" alt="Kent Lee">
-        <div class="name">Kent Lee</div>
-        <div class="role">Senior Advisor</div>
+        <div>
+          <div class="name">Kent Lee</div>
+          <div class="role">Senior Advisor</div>
+        </div>
       </div>
-      <div class="team-card glass">
+      <div class="ext-pill glass">
         <img src="https://static.wixstatic.com/media/08b376_27ad32527039459387c5f9229bcf0b9a~mv2.jpeg" alt="Bernard Liew">
-        <div class="name">Bernard Liew</div>
-        <div class="role">Senior Advisor</div>
+        <div>
+          <div class="name">Bernard Liew</div>
+          <div class="role">Senior Advisor</div>
+        </div>
       </div>
-      <div class="team-card glass">
+      <div class="ext-pill glass">
         <img src="https://static.wixstatic.com/media/08b376_f7ea8bc9ca454946afa17f3ed02251b0~mv2.jpg" alt="Desmond Chong">
-        <div class="name">Desmond Chong</div>
-        <div class="role">Fuel Advisor</div>
+        <div>
+          <div class="name">Desmond Chong</div>
+          <div class="role">Fuel Advisor</div>
+        </div>
       </div>
-      <div class="team-card glass">
+      <div class="ext-pill glass">
         <img src="https://static.wixstatic.com/media/08b376_fea624b81d7e4d9ab7bbe5bf75c1ca1a~mv2.jpeg" alt="Liang Jiaqi">
-        <div class="name">Liang Jiaqi</div>
-        <div class="role">Principal Scientist</div>
+        <div>
+          <div class="name">Liang Jiaqi</div>
+          <div class="role">Principal Scientist</div>
+        </div>
       </div>
-      <div class="team-card glass">
+      <div class="ext-pill glass">
         <img src="https://static.wixstatic.com/media/08b376_8fabf41fe9e9420494bc784425051cee~mv2.jpeg" alt="Howe Weng Kiong">
-        <div class="name">Howe Weng Kiong</div>
-        <div class="role">NUS Portfolio Manager</div>
+        <div>
+          <div class="name">Howe Weng Kiong</div>
+          <div class="role">NUS Portfolio Manager</div>
+        </div>
       </div>
-      <div class="team-card glass">
+      <div class="ext-pill glass">
         <img src="https://static.wixstatic.com/media/08b376_79e32d67c5434c7fbe4bf5e35aad149f~mv2.jpg" alt="David Sher">
-        <div class="name">David Sher</div>
-        <div class="role">Venture Manager</div>
+        <div>
+          <div class="name">David Sher</div>
+          <div class="role">Venture Manager</div>
+        </div>
       </div>
     </div>
   </div>
