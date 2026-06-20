@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Team | Green COP</title>
+<title>Contact | Green COP</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300..700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap');
 
@@ -277,13 +277,33 @@
   .contact-form{padding:36px;}
   .field{margin-bottom:18px;}
   .field label{display:block; font-family:'IBM Plex Mono',monospace; font-size:11.5px; text-transform:uppercase; letter-spacing:.06em; color:var(--ink-muted); margin-bottom:8px;}
-  .field input, .field textarea{
+  .field input, .field textarea, .field select{
     width:100%; background:rgba(255,255,255,0.6); border:1px solid var(--glass-border); color:var(--ink);
     padding:13px 14px; border-radius:12px; font-family:'Inter',sans-serif; font-size:14.5px;
     -webkit-backdrop-filter:blur(8px); backdrop-filter:blur(8px);
   }
   .field input::placeholder, .field textarea::placeholder{color:#8A9A92;}
   .field textarea{min-height:100px; resize:vertical;}
+  .field select{appearance:none; cursor:pointer;}
+
+  /* CONTACT PAGE extras */
+  .contact-info-list{margin-top:24px;}
+  .contact-info-item{display:flex; gap:14px; align-items:flex-start; margin-bottom:20px;}
+  .contact-info-icon{
+    width:38px; height:38px; border-radius:10px; flex:0 0 auto;
+    background:linear-gradient(135deg, rgba(31,164,99,0.14), rgba(31,138,224,0.14));
+    display:flex; align-items:center; justify-content:center; font-size:17px;
+  }
+  .contact-info-item h4{font-size:14px; font-weight:600; margin-bottom:3px;}
+  .contact-info-item p, .contact-info-item a{font-size:14px; color:var(--ink-muted); text-decoration:none;}
+  .contact-info-item a:hover{color:var(--green-deep);}
+  .social-row{display:flex; gap:12px; margin-top:8px;}
+  .social-pill{
+    width:38px; height:38px; border-radius:50%; display:flex; align-items:center; justify-content:center;
+    background:rgba(255,255,255,0.7); border:1px solid var(--glass-border); transition:transform .15s;
+  }
+  .social-pill:hover{transform:scale(1.08);}
+  .social-pill svg{width:16px; height:16px;}
 
   /* FOOTER */
   footer{padding:24px 18px 36px;}
@@ -595,6 +615,78 @@
   }
   .hero-card.bare p{color:rgba(255,255,255,0.92); text-shadow:0 1px 10px rgba(0,0,0,0.3); margin-bottom:0;}
 </style>
+<style>
+  /* CAREER PAGE — blurred placeholder content behind a "Hiring Soon" overlay */
+  .career-wrap{position:relative;}
+  .career-blurred{
+    filter:blur(7px); opacity:0.55; pointer-events:none; user-select:none;
+  }
+  .career-overlay{
+    position:absolute; inset:0; z-index:10; display:flex; align-items:center; justify-content:center;
+    padding:24px;
+  }
+  .career-overlay-card{
+    max-width:480px; text-align:center; padding:48px 40px;
+  }
+  .career-overlay-card .eyebrow{margin-bottom:16px; display:inline-block;}
+  .career-overlay-card h2{font-size:clamp(26px,3.4vw,34px); margin-bottom:14px;}
+  .career-overlay-card p{color:var(--ink-muted); font-size:15px; margin-bottom:28px;}
+
+  .role-card-fake{padding:24px; margin-bottom:16px;}
+  .role-card-fake h4{font-size:17px; margin-bottom:6px;}
+  .role-card-fake p{font-size:13px; color:var(--ink-muted);}
+  .role-tag-fake{
+    display:inline-block; font-family:'IBM Plex Mono',monospace; font-size:10.5px;
+    text-transform:uppercase; letter-spacing:.06em; padding:4px 10px; border-radius:999px;
+    background:rgba(31,164,99,0.14); color:var(--green-deep); margin-bottom:10px;
+  }
+</style>
+<style>
+  /* MEDIA PAGE — press releases */
+  .press-list{display:flex; flex-direction:column; gap:1px; background:var(--hairline); border-radius:16px; overflow:hidden; margin-top:8px;}
+  .press-item{background:var(--paper); padding:26px 28px; display:flex; justify-content:space-between; align-items:center; gap:24px; flex-wrap:wrap;}
+  .press-item .press-date{font-family:'IBM Plex Mono',monospace; font-size:12px; color:var(--blue-deep); margin-bottom:6px; display:block;}
+  .press-item h3{font-size:17px; font-weight:500; margin-bottom:6px; max-width:680px;}
+  .press-item p{font-size:13.5px; color:var(--ink-muted); max-width:680px;}
+  .press-link{
+    font-family:'IBM Plex Mono',monospace; font-size:12.5px; white-space:nowrap;
+    color:var(--green-deep); text-decoration:none; border-bottom:1px solid currentColor; flex:0 0 auto;
+  }
+  .press-link:hover{color:var(--blue-deep);}
+  @media (max-width:700px){
+    .press-item{flex-direction:column; align-items:flex-start;}
+  }
+</style>
+<style>
+  /* FEATURED CAROUSEL — Celebrating X Years of Excellence */
+  .feat-carousel{margin-top:8px;}
+  .feat-carousel-frame{
+    position:relative; border-radius:18px; overflow:hidden; aspect-ratio:16/6.2;
+    background:#0E1B3A;
+  }
+  .feat-slide{
+    position:absolute; inset:0; opacity:0; transition:opacity .5s ease; pointer-events:none;
+  }
+  .feat-slide.active{opacity:1; pointer-events:auto;}
+  .feat-slide img{width:100%; height:100%; object-fit:cover; display:block;}
+  .feat-nav{
+    position:absolute; top:50%; transform:translateY(-50%); width:42px; height:42px; border-radius:50%;
+    background:rgba(0,0,0,0.55); color:#fff; border:none; display:flex; align-items:center; justify-content:center;
+    cursor:pointer; font-size:18px; z-index:5;
+  }
+  .feat-nav:hover{background:rgba(0,0,0,0.75);}
+  .feat-prev{left:16px;}
+  .feat-next{right:16px;}
+  .feat-caption{text-align:center; margin-top:24px;}
+  .feat-caption h3{font-size:22px; margin-bottom:8px;}
+  .feat-caption p{color:var(--ink-muted); font-size:14.5px; max-width:760px; margin:0 auto;}
+  .feat-dots{display:flex; gap:8px; justify-content:center; margin-top:18px;}
+  .feat-dot{width:8px; height:8px; border-radius:50%; background:var(--hairline); border:none; cursor:pointer; padding:0;}
+  .feat-dot.active{background:linear-gradient(90deg, var(--green), var(--blue));}
+  @media (max-width:700px){
+    .feat-carousel-frame{aspect-ratio:4/5;}
+  }
+</style>
 
 </head>
 <body>
@@ -619,118 +711,57 @@
 
 <header class="page-hero">
   <div class="wrap">
-    <span class="eyebrow">Our team</span>
-    <h1>The backbone of our success.</h1>
-    <p>A small, deep-tech team in Singapore — scientists, operators, and advisors building a circular economy for biofuel.</p>
+    <span class="eyebrow">Get in touch</span>
+    <h1>Connect with us.</h1>
+    <p>Whether you're exploring a feedstock partnership, a maritime pilot, a press inquiry, or want to join the team — we'd like to hear from you.</p>
   </div>
 </header>
 
 <section>
   <div class="wrap">
-    <div class="section-head">
+    <div class="contact-grid">
       <div>
-        <span class="eyebrow">Leadership</span>
-        <h2>The four steering the ship.</h2>
-      </div>
-    </div>
-    <div class="leader-row">
-      <div class="leader-card glass">
-        <img src="https://static.wixstatic.com/media/08b376_200f742038b74dd7ad14ffc1bd93fc45~mv2.jpg" alt="Dr. Hanson Lee">
-        <div class="leader-info">
-          <a href="https://www.linkedin.com/in/song-han-lee-hanson/" target="_blank" rel="noopener" class="li-link" aria-label="Dr. Hanson Lee on LinkedIn"><svg viewBox="0 0 24 24" fill="#0A66C2"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14zM7.12 20.45H3.56V9h3.56v11.45z"/></svg></a>
-          <span class="leader-tag">Leadership</span>
-          <div class="name">Dr. Hanson Lee</div>
-          <div class="role">Co-Founder · CEO</div>
-        </div>
-      </div>
-      <div class="leader-card glass">
-        <img src="https://static.wixstatic.com/media/08b376_07d3b7e69d7c48f08e7adcc3b13d0306~mv2.jpg" alt="Low Wang Chang">
-        <div class="leader-info">
-          <a href="https://www.linkedin.com/in/lowwangchang/" target="_blank" rel="noopener" class="li-link" aria-label="Low Wang Chang on LinkedIn"><svg viewBox="0 0 24 24" fill="#0A66C2"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14zM7.12 20.45H3.56V9h3.56v11.45z"/></svg></a>
-          <span class="leader-tag">Leadership</span>
-          <div class="name">Low Wang Chang</div>
-          <div class="role">Co-Founder · COO</div>
-        </div>
-      </div>
-      <div class="leader-card glass">
-        <img src="https://static.wixstatic.com/media/08b376_287518a8c1ff4e8c87d88f233d83bf21~mv2.jpg" alt="Sng Yee Ching">
-        <div class="leader-info">
-          <a href="https://www.linkedin.com/in/yeechingsng67/" target="_blank" rel="noopener" class="li-link" aria-label="Sng Yee Ching on LinkedIn"><svg viewBox="0 0 24 24" fill="#0A66C2"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14zM7.12 20.45H3.56V9h3.56v11.45z"/></svg></a>
-          <span class="leader-tag">Leadership</span>
-          <div class="name">Sng Yee Ching</div>
-          <div class="role">Co-Founder · Chief of Staff</div>
-        </div>
-      </div>
-      <div class="leader-card glass">
-        <img src="https://static.wixstatic.com/media/08b376_64a0bb1aec824a138031be3859c4eb22~mv2.jpg" alt="Teo Teng Seng">
-        <div class="leader-info">
-          <a href="https://www.linkedin.com/in/ts-teo-1415752/" target="_blank" rel="noopener" class="li-link" aria-label="Teo Teng Seng on LinkedIn"><svg viewBox="0 0 24 24" fill="#0A66C2"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14zM7.12 20.45H3.56V9h3.56v11.45z"/></svg></a>
-          <span class="leader-tag">Leadership</span>
-          <div class="name">Teo Teng Seng</div>
-          <div class="role">Chairman</div>
-        </div>
-      </div>
-    </div>
+        <p>Your information stays confidential and is used solely to respond to your inquiry. We typically respond within 2–3 business days.</p>
 
-    <div class="ext-divider">
-      <span class="eyebrow">Advisors &amp; science</span>
-      <div class="line"></div>
-    </div>
-    <div class="ext-grid">
-      <div class="leader-card glass">
-        <img src="https://static.wixstatic.com/media/08b376_9ff89c495bb84a69b8d999d05d3070d6~mv2.jpg" alt="Kent Lee">
-        <div class="leader-info">
-          <a href="https://www.linkedin.com/in/kent-lee-yc/" target="_blank" rel="noopener" class="li-link" aria-label="Kent Lee on LinkedIn"><svg viewBox="0 0 24 24" fill="#0A66C2"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14zM7.12 20.45H3.56V9h3.56v11.45z"/></svg></a>
-          <span class="leader-tag">Advisor</span>
-          <div class="name">Kent Lee</div>
-          <div class="role">Senior Advisor</div>
+        <div class="contact-info-list">
+          <div class="contact-info-item">
+            <div class="contact-info-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#0E7A4B" stroke-width="2"><path d="M3 5h18v14H3z"/><path d="M3 6l9 7 9-7"/></svg></div>
+            <div>
+              <h4>Email</h4>
+              <a href="mailto:info@greencop.sg">info@greencop.sg</a>
+            </div>
+          </div>
+          <div class="contact-info-item">
+            <div class="contact-info-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#0D63B0" stroke-width="2"><path d="M12 21s7-7.5 7-12a7 7 0 1 0-14 0c0 4.5 7 12 7 12z"/><circle cx="12" cy="9" r="2.5"/></svg></div>
+            <div>
+              <h4>Office</h4>
+              <p>71 Ayer Rajah Crescent, Suite 01-16<br>Singapore 139951</p>
+            </div>
+          </div>
+        </div>
+
+        <h4 style="font-size:14px; font-weight:600; margin-bottom:0;">Follow us</h4>
+        <div class="social-row">
+          <a href="https://www.linkedin.com/company/green-cop" target="_blank" rel="noopener" class="social-pill" aria-label="Green COP on LinkedIn"><svg viewBox="0 0 24 24" fill="#0A66C2"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14zM7.12 20.45H3.56V9h3.56v11.45z"/></svg></a>
         </div>
       </div>
-      <div class="leader-card glass">
-        <img src="https://static.wixstatic.com/media/08b376_27ad32527039459387c5f9229bcf0b9a~mv2.jpeg" alt="Bernard Liew">
-        <div class="leader-info">
-          <a href="https://www.linkedin.com/in/bernard-liew-76aa671/" target="_blank" rel="noopener" class="li-link" aria-label="Bernard Liew on LinkedIn"><svg viewBox="0 0 24 24" fill="#0A66C2"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14zM7.12 20.45H3.56V9h3.56v11.45z"/></svg></a>
-          <span class="leader-tag">Advisor</span>
-          <div class="name">Bernard Liew</div>
-          <div class="role">Senior Advisor</div>
+
+      <form class="contact-form glass">
+        <div class="field"><label>Name</label><input type="text" placeholder="Your name"></div>
+        <div class="field"><label>Email</label><input type="email" placeholder="you@company.com"></div>
+        <div class="field">
+          <label>Inquiry type</label>
+          <select>
+            <option value="">Select an option</option>
+            <option value="partnership">Partnership</option>
+            <option value="press">Press</option>
+            <option value="careers">Careers</option>
+            <option value="general">General</option>
+          </select>
         </div>
-      </div>
-      <div class="leader-card glass">
-        <img src="https://static.wixstatic.com/media/08b376_f7ea8bc9ca454946afa17f3ed02251b0~mv2.jpg" alt="Desmond Chong">
-        <div class="leader-info">
-          <a href="https://www.linkedin.com/in/desmondgregorychong/" target="_blank" rel="noopener" class="li-link" aria-label="Desmond Chong on LinkedIn"><svg viewBox="0 0 24 24" fill="#0A66C2"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14zM7.12 20.45H3.56V9h3.56v11.45z"/></svg></a>
-          <span class="leader-tag">Advisor</span>
-          <div class="name">Desmond Chong</div>
-          <div class="role">Fuel Advisor</div>
-        </div>
-      </div>
-      <div class="leader-card glass">
-        <img src="https://static.wixstatic.com/media/08b376_fea624b81d7e4d9ab7bbe5bf75c1ca1a~mv2.jpeg" alt="Liang Jiaqi">
-        <div class="leader-info">
-          <a href="https://www.linkedin.com/in/liangjiaqi/" target="_blank" rel="noopener" class="li-link" aria-label="Liang Jiaqi on LinkedIn"><svg viewBox="0 0 24 24" fill="#0A66C2"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14zM7.12 20.45H3.56V9h3.56v11.45z"/></svg></a>
-          <span class="leader-tag">Science</span>
-          <div class="name">Liang Jiaqi</div>
-          <div class="role">Principal Scientist</div>
-        </div>
-      </div>
-      <div class="leader-card glass">
-        <img src="https://static.wixstatic.com/media/08b376_8fabf41fe9e9420494bc784425051cee~mv2.jpeg" alt="Howe Weng Kiong">
-        <div class="leader-info">
-          <a href="https://www.linkedin.com/in/weng-khiong-howe-096219219/" target="_blank" rel="noopener" class="li-link" aria-label="Howe Weng Kiong on LinkedIn"><svg viewBox="0 0 24 24" fill="#0A66C2"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14zM7.12 20.45H3.56V9h3.56v11.45z"/></svg></a>
-          <span class="leader-tag">Portfolio</span>
-          <div class="name">Howe Weng Kiong</div>
-          <div class="role">NUS Portfolio Manager</div>
-        </div>
-      </div>
-      <div class="leader-card glass">
-        <img src="https://static.wixstatic.com/media/08b376_79e32d67c5434c7fbe4bf5e35aad149f~mv2.jpg" alt="David Sher">
-        <div class="leader-info">
-          <a href="https://www.linkedin.com/in/david-sher-172b957/" target="_blank" rel="noopener" class="li-link" aria-label="David Sher on LinkedIn"><svg viewBox="0 0 24 24" fill="#0A66C2"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14zM7.12 20.45H3.56V9h3.56v11.45z"/></svg></a>
-          <span class="leader-tag">Venture</span>
-          <div class="name">David Sher</div>
-          <div class="role">Venture Manager</div>
-        </div>
-      </div>
+        <div class="field"><label>Message</label><textarea placeholder="Tell us a little about what you're looking for"></textarea></div>
+        <button type="submit" class="btn btn-primary" style="border:none; cursor:pointer;">Send inquiry</button>
+      </form>
     </div>
   </div>
 </section>
