@@ -126,6 +126,12 @@
   .hero-card{
     padding:44px 40px;
     max-width:640px;
+    border-radius:0;
+    background:rgba(255,255,255,0.82);
+    -webkit-backdrop-filter:blur(22px) saturate(160%);
+    backdrop-filter:blur(22px) saturate(160%);
+    border:1px solid rgba(255,255,255,0.9);
+    box-shadow:0 10px 36px rgba(16,36,28,0.16);
   }
   .hero .eyebrow{
     margin-bottom:22px; display:inline-block;
@@ -385,6 +391,52 @@
     .leader-row{grid-template-columns:repeat(2,1fr);}
   }
 </style>
+<style>
+  /* FEATURED-BY MARQUEE (train slide) */
+  .featured-strip{padding:40px 0 48px; position:relative;}
+  .featured-strip .strip-head{text-align:center; margin-bottom:28px;}
+  .marquee-mask{
+    overflow:hidden; position:relative;
+    -webkit-mask-image:linear-gradient(90deg, transparent, black 10%, black 90%, transparent);
+    mask-image:linear-gradient(90deg, transparent, black 10%, black 90%, transparent);
+  }
+  .marquee-track{
+    display:flex; gap:72px; align-items:center; width:max-content;
+    animation:marquee-scroll 26s linear infinite;
+  }
+  .marquee-track img{height:30px; width:auto; opacity:.75;}
+  .marquee-mask:hover .marquee-track{animation-play-state:paused;}
+  @keyframes marquee-scroll{
+    from{transform:translateX(0);}
+    to{transform:translateX(-50%);}
+  }
+
+  /* OUR JOURNEY — horizontal scroll-snap timeline */
+  .journey-scroll{
+    display:flex; gap:20px; overflow-x:auto; padding:28px 4px 16px;
+    scroll-snap-type:x mandatory; margin-top:8px;
+  }
+  .journey-card{
+    min-width:230px; flex:0 0 auto; scroll-snap-align:start; padding:26px 22px;
+    position:relative;
+  }
+  .journey-card .yr{
+    font-family:'Fraunces',serif; font-size:36px; margin-bottom:10px;
+    background:linear-gradient(90deg, var(--green-deep), var(--blue-deep));
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+  }
+  .journey-card h3{font-size:16.5px; margin-bottom:8px; font-weight:500;}
+  .journey-card p{font-size:13.5px; color:var(--ink-muted);}
+  .journey-track-line{height:2px; background:linear-gradient(90deg, var(--green), var(--blue)); opacity:.3; margin-top:-8px; margin-bottom:8px; border-radius:2px;}
+
+  /* TEAM extended grid (full-size cards, not minimized) */
+  .ext-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:22px;}
+
+  @media (max-width:900px){
+    .ext-grid{grid-template-columns:repeat(2,1fr);}
+    .journey-card{min-width:200px;}
+  }
+</style>
 
 </head>
 <body>
@@ -421,6 +473,33 @@
     </div>
   </div>
 </header>
+
+<!-- FEATURED BY (train slide marquee) -->
+<section class="featured-strip">
+  <div class="wrap strip-head">
+    <span class="eyebrow">As featured by</span>
+  </div>
+  <div class="marquee-mask">
+    <div class="marquee-track">
+        <img src="https://static.wixstatic.com/media/08b376_d3a809eaa3ea46348838768adb0eea5d~mv2.png" alt="CNA">
+        <img src="https://static.wixstatic.com/media/08b376_ed6eb443695341d09707a3bba1121170~mv2.png" alt="Featured press">
+        <img src="https://static.wixstatic.com/media/08b376_58a15b9d7ad74d5d85301247c3af7dce~mv2.png" alt="Lianhe Zaobao">
+        <img src="https://static.wixstatic.com/media/08b376_755a0def94c248a1a8b83a196c13202a~mv2.png" alt="S&P Global">
+        <img src="https://static.wixstatic.com/media/08b376_d6679d8bdfbf4857ac83cb46d08cfbb6~mv2.png" alt="Shell StartUp Engine">
+        <img src="https://static.wixstatic.com/media/08b376_0d3e67ab4afb41fc8055c718e49d54f8~mv2.png" alt="PIER71 and MPA">
+        <img src="https://static.wixstatic.com/media/08b376_0e8e5555c9e34a6b92b386d3804f7318~mv2.png" alt="NUS Enterprise">
+        <img src="https://static.wixstatic.com/media/08b376_2a26ed874e3d4d2487b33680004f52f1~mv2.png" alt="UM">
+        <img src="https://static.wixstatic.com/media/08b376_d3a809eaa3ea46348838768adb0eea5d~mv2.png" alt="CNA">
+        <img src="https://static.wixstatic.com/media/08b376_ed6eb443695341d09707a3bba1121170~mv2.png" alt="Featured press">
+        <img src="https://static.wixstatic.com/media/08b376_58a15b9d7ad74d5d85301247c3af7dce~mv2.png" alt="Lianhe Zaobao">
+        <img src="https://static.wixstatic.com/media/08b376_755a0def94c248a1a8b83a196c13202a~mv2.png" alt="S&P Global">
+        <img src="https://static.wixstatic.com/media/08b376_d6679d8bdfbf4857ac83cb46d08cfbb6~mv2.png" alt="Shell StartUp Engine">
+        <img src="https://static.wixstatic.com/media/08b376_0d3e67ab4afb41fc8055c718e49d54f8~mv2.png" alt="PIER71 and MPA">
+        <img src="https://static.wixstatic.com/media/08b376_0e8e5555c9e34a6b92b386d3804f7318~mv2.png" alt="NUS Enterprise">
+        <img src="https://static.wixstatic.com/media/08b376_2a26ed874e3d4d2487b33680004f52f1~mv2.png" alt="UM">
+    </div>
+  </div>
+</section>
 
 <div class="hairline"></div>
 
@@ -476,7 +555,7 @@
   </div>
 </section>
 
-<!-- OUR JOURNEY (moved here, right before Contact) -->
+<!-- OUR JOURNEY — redesigned as a horizontal scroll-snap milestone strip -->
 <section id="journey">
   <div class="wrap">
     <div class="section-head">
@@ -484,27 +563,33 @@
         <span class="eyebrow">Our journey</span>
         <h2>From founding to scale.</h2>
       </div>
+      <p class="lede">Drag or scroll sideways to follow the milestones.</p>
     </div>
-    <div class="timeline tl-rail">
-      <div class="tl-item">
-        <div class="tl-year">2021</div>
-        <div><h3>Founded</h3><p>Green COP founded in Singapore with a mission to convert biowaste into biofuels.</p></div>
+    <div class="journey-scroll">
+      <div class="journey-card glass">
+        <div class="yr">2021</div>
+        <h3>Founded</h3>
+        <p>Green COP founded in Singapore with a mission to convert biowaste into biofuels.</p>
       </div>
-      <div class="tl-item">
-        <div class="tl-year">2022</div>
-        <div><h3>Smart Port Challenge</h3><p>Recognised at the MPA &amp; NUS Enterprise Smart Port Challenge.</p></div>
+      <div class="journey-card glass">
+        <div class="yr">2022</div>
+        <h3>Smart Port Challenge</h3>
+        <p>Recognised at the MPA &amp; NUS Enterprise Smart Port Challenge.</p>
       </div>
-      <div class="tl-item">
-        <div class="tl-year">2023</div>
-        <div><h3>Patents &amp; ISCC</h3><p>Secured patents for our two-step biofuel process and achieved ISCC certification.</p></div>
+      <div class="journey-card glass">
+        <div class="yr">2023</div>
+        <h3>Patents &amp; ISCC</h3>
+        <p>Secured patents for our two-step biofuel process and achieved ISCC certification.</p>
       </div>
-      <div class="tl-item">
-        <div class="tl-year">2024</div>
-        <div><h3>Angel funding &amp; plant</h3><p>Closed an angel investment round and established a pre-commercial plant in Johor, Malaysia.</p></div>
+      <div class="journey-card glass">
+        <div class="yr">2024</div>
+        <h3>Angel funding &amp; plant</h3>
+        <p>Closed an angel round and established a pre-commercial plant in Johor, Malaysia.</p>
       </div>
-      <div class="tl-item">
-        <div class="tl-year">2025</div>
-        <div><h3>Strategic partnership</h3><p>Partnered with a leading palm oil group to help commercialise sustainable marine fuels at scale.</p></div>
+      <div class="journey-card glass">
+        <div class="yr">2025</div>
+        <h3>Strategic partnership</h3>
+        <p>Partnered with a leading palm oil group to commercialise sustainable marine fuels at scale.</p>
       </div>
     </div>
   </div>

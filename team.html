@@ -126,6 +126,12 @@
   .hero-card{
     padding:44px 40px;
     max-width:640px;
+    border-radius:0;
+    background:rgba(255,255,255,0.82);
+    -webkit-backdrop-filter:blur(22px) saturate(160%);
+    backdrop-filter:blur(22px) saturate(160%);
+    border:1px solid rgba(255,255,255,0.9);
+    box-shadow:0 10px 36px rgba(16,36,28,0.16);
   }
   .hero .eyebrow{
     margin-bottom:22px; display:inline-block;
@@ -385,6 +391,52 @@
     .leader-row{grid-template-columns:repeat(2,1fr);}
   }
 </style>
+<style>
+  /* FEATURED-BY MARQUEE (train slide) */
+  .featured-strip{padding:40px 0 48px; position:relative;}
+  .featured-strip .strip-head{text-align:center; margin-bottom:28px;}
+  .marquee-mask{
+    overflow:hidden; position:relative;
+    -webkit-mask-image:linear-gradient(90deg, transparent, black 10%, black 90%, transparent);
+    mask-image:linear-gradient(90deg, transparent, black 10%, black 90%, transparent);
+  }
+  .marquee-track{
+    display:flex; gap:72px; align-items:center; width:max-content;
+    animation:marquee-scroll 26s linear infinite;
+  }
+  .marquee-track img{height:30px; width:auto; opacity:.75;}
+  .marquee-mask:hover .marquee-track{animation-play-state:paused;}
+  @keyframes marquee-scroll{
+    from{transform:translateX(0);}
+    to{transform:translateX(-50%);}
+  }
+
+  /* OUR JOURNEY — horizontal scroll-snap timeline */
+  .journey-scroll{
+    display:flex; gap:20px; overflow-x:auto; padding:28px 4px 16px;
+    scroll-snap-type:x mandatory; margin-top:8px;
+  }
+  .journey-card{
+    min-width:230px; flex:0 0 auto; scroll-snap-align:start; padding:26px 22px;
+    position:relative;
+  }
+  .journey-card .yr{
+    font-family:'Fraunces',serif; font-size:36px; margin-bottom:10px;
+    background:linear-gradient(90deg, var(--green-deep), var(--blue-deep));
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+  }
+  .journey-card h3{font-size:16.5px; margin-bottom:8px; font-weight:500;}
+  .journey-card p{font-size:13.5px; color:var(--ink-muted);}
+  .journey-track-line{height:2px; background:linear-gradient(90deg, var(--green), var(--blue)); opacity:.3; margin-top:-8px; margin-bottom:8px; border-radius:2px;}
+
+  /* TEAM extended grid (full-size cards, not minimized) */
+  .ext-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:22px;}
+
+  @media (max-width:900px){
+    .ext-grid{grid-template-columns:repeat(2,1fr);}
+    .journey-card{min-width:200px;}
+  }
+</style>
 
 </head>
 <body>
@@ -460,45 +512,51 @@
       <span class="eyebrow">Advisors &amp; science</span>
       <div class="line"></div>
     </div>
-    <div class="ext-row">
-      <div class="ext-pill glass">
+    <div class="ext-grid">
+      <div class="leader-card glass">
         <img src="https://static.wixstatic.com/media/08b376_9ff89c495bb84a69b8d999d05d3070d6~mv2.jpg" alt="Kent Lee">
-        <div>
+        <div class="leader-info">
+          <span class="leader-tag">Advisor</span>
           <div class="name">Kent Lee</div>
           <div class="role">Senior Advisor</div>
         </div>
       </div>
-      <div class="ext-pill glass">
+      <div class="leader-card glass">
         <img src="https://static.wixstatic.com/media/08b376_27ad32527039459387c5f9229bcf0b9a~mv2.jpeg" alt="Bernard Liew">
-        <div>
+        <div class="leader-info">
+          <span class="leader-tag">Advisor</span>
           <div class="name">Bernard Liew</div>
           <div class="role">Senior Advisor</div>
         </div>
       </div>
-      <div class="ext-pill glass">
+      <div class="leader-card glass">
         <img src="https://static.wixstatic.com/media/08b376_f7ea8bc9ca454946afa17f3ed02251b0~mv2.jpg" alt="Desmond Chong">
-        <div>
+        <div class="leader-info">
+          <span class="leader-tag">Advisor</span>
           <div class="name">Desmond Chong</div>
           <div class="role">Fuel Advisor</div>
         </div>
       </div>
-      <div class="ext-pill glass">
+      <div class="leader-card glass">
         <img src="https://static.wixstatic.com/media/08b376_fea624b81d7e4d9ab7bbe5bf75c1ca1a~mv2.jpeg" alt="Liang Jiaqi">
-        <div>
+        <div class="leader-info">
+          <span class="leader-tag">Science</span>
           <div class="name">Liang Jiaqi</div>
           <div class="role">Principal Scientist</div>
         </div>
       </div>
-      <div class="ext-pill glass">
+      <div class="leader-card glass">
         <img src="https://static.wixstatic.com/media/08b376_8fabf41fe9e9420494bc784425051cee~mv2.jpeg" alt="Howe Weng Kiong">
-        <div>
+        <div class="leader-info">
+          <span class="leader-tag">Portfolio</span>
           <div class="name">Howe Weng Kiong</div>
           <div class="role">NUS Portfolio Manager</div>
         </div>
       </div>
-      <div class="ext-pill glass">
+      <div class="leader-card glass">
         <img src="https://static.wixstatic.com/media/08b376_79e32d67c5434c7fbe4bf5e35aad149f~mv2.jpg" alt="David Sher">
-        <div>
+        <div class="leader-info">
+          <span class="leader-tag">Venture</span>
           <div class="name">David Sher</div>
           <div class="role">Venture Manager</div>
         </div>
