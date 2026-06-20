@@ -707,7 +707,6 @@
       <div class="feat-slide" data-title="The Green Launch" data-desc="Green COP, in collaboration with IOI Corporation, launched the \u201cAgri-Waste Revolution: The Green Launch\u201d to showcase its biobutanol initiative, uniting industry leaders to advance sustainable fuels.">
         <img src="https://static.wixstatic.com/media/08b376_2b5a6f0bd60849a8aaef9493ed7e7a2a~mv2.jpg" alt="The Green Launch">
       </div>
-      <button class="feat-nav feat-next" id="featNext" aria-label="Next">›</button>
   </div>
   <div class="wrap">
     <div class="feat-caption" id="featCaption">
@@ -802,64 +801,6 @@
   </div>
 </section>
 
-<section class="process">
-  <div class="wrap">
-    <div class="section-head">
-      <div>
-        <span class="eyebrow">Our journey</span>
-        <h2>From founding to scale.</h2>
-      </div>
-      <p class="lede">Highlights — for the full archive of events, visit our LinkedIn.</p>
-    </div>
-    <div class="timeline tl-rail">
-  <div class="tl-item">
-    <div class="tl-year">Sept 2021</div>
-    <div><h3>Shell StartUp Engine, Class of 2021</h3><p>Selected as one of the TOP 6 startups to join the Shell StartUp Engine Singapore 2021 Program.</p></div>
-  </div>
-  <div class="tl-item">
-    <div class="tl-year">Nov 2022</div>
-    <div><h3>Smart Port Challenge 2022</h3><p>First runner-up in PIER71's Smart Port Challenge, an annual innovation competition for maritime start-ups.</p></div>
-  </div>
-  <div class="tl-item">
-    <div class="tl-year">Feb 2024</div>
-    <div><h3>Angel Investment & New Chairman</h3><p>Closed a significant angel round and appointed maritime veteran Teo Teng Seng as Chairman.</p></div>
-  </div>
-  <div class="tl-item">
-    <div class="tl-year">Mar 2024</div>
-    <div><h3>Strategic Collaboration with IOI</h3><p>Announced a partnership to upcycle empty palm fruit bunches into sustainable marine fuels.</p></div>
-  </div>
-  <div class="tl-item">
-    <div class="tl-year">Apr 2024</div>
-    <div><h3>Ken Energy Partnership</h3><p>Inked an MOU with Ken Energy Pte Ltd at Singapore Maritime Week to advance biofuel solutions.</p></div>
-  </div>
-  <div class="tl-item">
-    <div class="tl-year">May 2024</div>
-    <div><h3>Pre-commercial Plant in Johor</h3><p>Launched our first pre-commercial biofuel plant in Johor, Malaysia.</p></div>
-  </div>
-  <div class="tl-item">
-    <div class="tl-year">Sept 2024</div>
-    <div><h3>ISCC EU Certification</h3><p>Secured ISCC EU certification, strengthening our sustainable supply chain credentials.</p></div>
-  </div>
-  <div class="tl-item">
-    <div class="tl-year">Mar 2025</div>
-    <div><h3>Universiti Malaya MoU</h3><p>Forged an MoU with Universiti Malaya for research and education collaboration in sustainable energy.</p></div>
-  </div>
-  <div class="tl-item">
-    <div class="tl-year">Sept 2025</div>
-    <div><h3>Breakthrough Energy Fellow</h3><p>Selected as a Breakthrough Energy Fellow, joining a global network backing deep-tech climate ventures.</p></div>
-  </div>
-  <div class="tl-item">
-    <div class="tl-year">Oct 2025</div>
-    <div><h3>Chemtex Partnership</h3><p>Partnered with Chemtex to scale global biobutanol production, bridged by YIT.</p></div>
-  </div>
-  <div class="tl-item">
-    <div class="tl-year">Feb 2026</div>
-    <div><h3>Advanced R&D Facility</h3><p>Completed Phase 1 of our IOI collaboration and transitioned to an advanced R&D facility in Singapore.</p></div>
-  </div>
-</div>
-  </div>
-</section>
-
 <div class="convert-bar"></div>
 <footer>
   <div class="wrap footer-inner glass">
@@ -880,7 +821,6 @@
       captionH3.textContent = slides[current].getAttribute('data-title');
       captionP.textContent = slides[current].getAttribute('data-desc');
     }
-    document.getElementById('featNext').addEventListener('click', function(){ show(current + 1); });
     setInterval(function(){ show(current + 1); }, 6000);
   })();
 </script>
