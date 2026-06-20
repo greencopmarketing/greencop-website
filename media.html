@@ -639,10 +639,12 @@
 </style>
 
 <style>
-  .feat-carousel{margin-top:8px;}
+  .feat-carousel{padding-top:130px; padding-bottom:56px;}
+  .feat-heading{text-align:center; margin-bottom:32px;}
+  .feat-heading h2{font-size:clamp(24px,3vw,32px); font-weight:600; font-family:'Inter',sans-serif;}
   .feat-carousel-frame{
-    position:relative; border-radius:18px; overflow:hidden; aspect-ratio:16/6.2;
-    background:#0E1B3A;
+    position:relative; overflow:hidden; aspect-ratio:16/5.2;
+    background:#0E1B3A; width:100%;
   }
   .feat-slide{
     position:absolute; inset:0; opacity:0; transition:opacity .5s ease; pointer-events:none;
@@ -650,21 +652,18 @@
   .feat-slide.active{opacity:1; pointer-events:auto;}
   .feat-slide img{width:100%; height:100%; object-fit:cover; display:block;}
   .feat-nav{
-    position:absolute; top:50%; transform:translateY(-50%); width:42px; height:42px; border-radius:50%;
-    background:rgba(0,0,0,0.55); color:#fff; border:none; display:flex; align-items:center; justify-content:center;
+    position:absolute; top:50%; transform:translateY(-50%); width:36px; height:36px; border-radius:6px;
+    background:rgba(0,0,0,0.6); color:#fff; border:none; display:flex; align-items:center; justify-content:center;
     cursor:pointer; font-size:18px; z-index:5;
   }
-  .feat-nav:hover{background:rgba(0,0,0,0.75);}
-  .feat-prev{left:16px;}
-  .feat-next{right:16px;}
-  .feat-caption{text-align:center; margin-top:24px;}
-  .feat-caption h3{font-size:22px; margin-bottom:8px;}
-  .feat-caption p{color:var(--ink-muted); font-size:14.5px; max-width:760px; margin:0 auto;}
-  .feat-dots{display:flex; gap:8px; justify-content:center; margin-top:18px;}
-  .feat-dot{width:8px; height:8px; border-radius:50%; background:var(--hairline); border:none; cursor:pointer; padding:0;}
-  .feat-dot.active{background:linear-gradient(90deg, var(--green), var(--blue));}
+  .feat-nav:hover{background:rgba(0,0,0,0.8);}
+  .feat-next{right:20px;}
+  .feat-caption{text-align:center; margin-top:28px; padding:0 24px;}
+  .feat-caption h3{font-size:22px; font-weight:600; margin-bottom:8px; font-family:'Inter',sans-serif;}
+  .feat-caption p{color:var(--ink-muted); font-size:14.5px; max-width:900px; margin:0 auto;}
   @media (max-width:700px){
     .feat-carousel-frame{aspect-ratio:4/5;}
+    .feat-carousel{padding-top:110px;}
   }
 </style>
 </head>
@@ -688,23 +687,11 @@
 </nav>
 <div class="convert-bar"></div>
 
-<header class="page-hero">
-  <div class="wrap">
-    <span class="eyebrow">Media</span>
-    <h1>News, milestones, and the journey so far.</h1>
-    <p>The latest from Green COP — press releases and a look back at the moments that shaped our path.</p>
-  </div>
-</header>
-
 <section class="feat-carousel">
-  <div class="wrap">
-    <div class="section-head">
-      <div>
-        <span class="eyebrow">Highlights</span>
-        <h2>Celebrating 4 Years of Excellence</h2>
-      </div>
-    </div>
-    <div class="feat-carousel-frame" id="featFrame">
+  <div class="wrap feat-heading">
+    <h2>Celebrating 5 Years of Excellence</h2>
+  </div>
+  <div class="feat-carousel-frame" id="featFrame">
       <div class="feat-slide active" data-title="A New Age of Biofuel" data-desc="At SIBCON 2024, CEO Dr. Hanson Lee highlighted Green COP's sustainable drop-in biofuels made from agri-waste as a scalable, seamless solution to help the maritime industry achieve IMO decarbonization targets.">
         <img src="https://static.wixstatic.com/media/08b376_0f65d1e4bc51487e929dc105417a32ed~mv2.jpg" alt="A New Age of Biofuel">
       </div>
@@ -720,19 +707,12 @@
       <div class="feat-slide" data-title="The Green Launch" data-desc="Green COP, in collaboration with IOI Corporation, launched the \u201cAgri-Waste Revolution: The Green Launch\u201d to showcase its biobutanol initiative, uniting industry leaders to advance sustainable fuels.">
         <img src="https://static.wixstatic.com/media/08b376_2b5a6f0bd60849a8aaef9493ed7e7a2a~mv2.jpg" alt="The Green Launch">
       </div>
-      <button class="feat-nav feat-prev" id="featPrev" aria-label="Previous">‹</button>
       <button class="feat-nav feat-next" id="featNext" aria-label="Next">›</button>
-    </div>
+  </div>
+  <div class="wrap">
     <div class="feat-caption" id="featCaption">
       <h3>A New Age of Biofuel</h3>
       <p>At SIBCON 2024, CEO Dr. Hanson Lee highlighted Green COP's sustainable drop-in biofuels made from agri-waste as a scalable, seamless solution to help the maritime industry achieve IMO decarbonization targets.</p>
-    </div>
-    <div class="feat-dots" id="featDots">
-      <button class="feat-dot active" data-i="0" aria-label="Slide 1"></button>
-      <button class="feat-dot" data-i="1" aria-label="Slide 2"></button>
-      <button class="feat-dot" data-i="2" aria-label="Slide 3"></button>
-      <button class="feat-dot" data-i="3" aria-label="Slide 4"></button>
-      <button class="feat-dot" data-i="4" aria-label="Slide 5"></button>
     </div>
   </div>
 </section>
@@ -890,24 +870,17 @@
 <script>
   (function(){
     var slides = document.querySelectorAll('#featFrame .feat-slide');
-    var dots = document.querySelectorAll('#featDots .feat-dot');
     var captionH3 = document.querySelector('#featCaption h3');
     var captionP = document.querySelector('#featCaption p');
     var current = 0;
     function show(i){
       slides[current].classList.remove('active');
-      dots[current].classList.remove('active');
       current = (i + slides.length) % slides.length;
       slides[current].classList.add('active');
-      dots[current].classList.add('active');
       captionH3.textContent = slides[current].getAttribute('data-title');
       captionP.textContent = slides[current].getAttribute('data-desc');
     }
-    document.getElementById('featPrev').addEventListener('click', function(){ show(current - 1); });
     document.getElementById('featNext').addEventListener('click', function(){ show(current + 1); });
-    dots.forEach(function(d){
-      d.addEventListener('click', function(){ show(parseInt(d.getAttribute('data-i'))); });
-    });
     setInterval(function(){ show(current + 1); }, 6000);
   })();
 </script>
