@@ -638,6 +638,35 @@
   }
 </style>
 
+<style>
+  .feat-carousel{margin-top:8px;}
+  .feat-carousel-frame{
+    position:relative; border-radius:18px; overflow:hidden; aspect-ratio:16/6.2;
+    background:#0E1B3A;
+  }
+  .feat-slide{
+    position:absolute; inset:0; opacity:0; transition:opacity .5s ease; pointer-events:none;
+  }
+  .feat-slide.active{opacity:1; pointer-events:auto;}
+  .feat-slide img{width:100%; height:100%; object-fit:cover; display:block;}
+  .feat-nav{
+    position:absolute; top:50%; transform:translateY(-50%); width:42px; height:42px; border-radius:50%;
+    background:rgba(0,0,0,0.55); color:#fff; border:none; display:flex; align-items:center; justify-content:center;
+    cursor:pointer; font-size:18px; z-index:5;
+  }
+  .feat-nav:hover{background:rgba(0,0,0,0.75);}
+  .feat-prev{left:16px;}
+  .feat-next{right:16px;}
+  .feat-caption{text-align:center; margin-top:24px;}
+  .feat-caption h3{font-size:22px; margin-bottom:8px;}
+  .feat-caption p{color:var(--ink-muted); font-size:14.5px; max-width:760px; margin:0 auto;}
+  .feat-dots{display:flex; gap:8px; justify-content:center; margin-top:18px;}
+  .feat-dot{width:8px; height:8px; border-radius:50%; background:var(--hairline); border:none; cursor:pointer; padding:0;}
+  .feat-dot.active{background:linear-gradient(90deg, var(--green), var(--blue));}
+  @media (max-width:700px){
+    .feat-carousel-frame{aspect-ratio:4/5;}
+  }
+</style>
 </head>
 <body>
 <div class="blob blob-1"></div>
@@ -666,6 +695,47 @@
     <p>The latest from Green COP — press releases and a look back at the moments that shaped our path.</p>
   </div>
 </header>
+
+<section class="feat-carousel">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <span class="eyebrow">Highlights</span>
+        <h2>Celebrating 4 Years of Excellence</h2>
+      </div>
+    </div>
+    <div class="feat-carousel-frame" id="featFrame">
+      <div class="feat-slide active" data-title="A New Age of Biofuel" data-desc="At SIBCON 2024, CEO Dr. Hanson Lee highlighted Green COP's sustainable drop-in biofuels made from agri-waste as a scalable, seamless solution to help the maritime industry achieve IMO decarbonization targets.">
+        <img src="https://static.wixstatic.com/media/08b376_0f65d1e4bc51487e929dc105417a32ed~mv2.jpg" alt="A New Age of Biofuel">
+      </div>
+      <div class="feat-slide" data-title="Start-Up of the Year Award" data-desc="A recognition of our commitment to sustainable biofuel innovation and the journey toward a Net Zero future.">
+        <img src="https://static.wixstatic.com/media/08b376_ac9f8c59780a45f8a49f1f3b8973a7fc~mv2.jpeg" alt="Start-Up of the Year Award">
+      </div>
+      <div class="feat-slide" data-title="Singapore Norway Innovation Conference 2024" data-desc="Green COP received the Most Promising Maritime Technology Award at the SNIC 2024 Innovation Awards, recognising our breakthrough in converting plant-based waste into clean, sustainable marine fuel.">
+        <img src="https://static.wixstatic.com/media/08b376_1f39620fcab8462c8abb28d0db31e24d~mv2.png" alt="Singapore Norway Innovation Conference 2024">
+      </div>
+      <div class="feat-slide" data-title="Green Innovation Takes Stage" data-desc="Green COP presented at the Pinghu-Tsinghua Yangtze River Delta Innovation Exchange, sharing our patented technology that transforms plant-based waste into bio-alcohols with real-world impact across industries.">
+        <img src="https://static.wixstatic.com/media/08b376_eb42359a2ea543d689a146d9a223973f~mv2.jpeg" alt="Green Innovation Takes Stage">
+      </div>
+      <div class="feat-slide" data-title="The Green Launch" data-desc="Green COP, in collaboration with IOI Corporation, launched the \u201cAgri-Waste Revolution: The Green Launch\u201d to showcase its biobutanol initiative, uniting industry leaders to advance sustainable fuels.">
+        <img src="https://static.wixstatic.com/media/08b376_2b5a6f0bd60849a8aaef9493ed7e7a2a~mv2.jpg" alt="The Green Launch">
+      </div>
+      <button class="feat-nav feat-prev" id="featPrev" aria-label="Previous">‹</button>
+      <button class="feat-nav feat-next" id="featNext" aria-label="Next">›</button>
+    </div>
+    <div class="feat-caption" id="featCaption">
+      <h3>A New Age of Biofuel</h3>
+      <p>At SIBCON 2024, CEO Dr. Hanson Lee highlighted Green COP's sustainable drop-in biofuels made from agri-waste as a scalable, seamless solution to help the maritime industry achieve IMO decarbonization targets.</p>
+    </div>
+    <div class="feat-dots" id="featDots">
+      <button class="feat-dot active" data-i="0" aria-label="Slide 1"></button>
+      <button class="feat-dot" data-i="1" aria-label="Slide 2"></button>
+      <button class="feat-dot" data-i="2" aria-label="Slide 3"></button>
+      <button class="feat-dot" data-i="3" aria-label="Slide 4"></button>
+      <button class="feat-dot" data-i="4" aria-label="Slide 5"></button>
+    </div>
+  </div>
+</section>
 
 <section>
   <div class="wrap">
@@ -817,5 +887,29 @@
     <div class="footer-meta">© 2026 Green COP Pte. Ltd. — Singapore</div>
   </div>
 </footer>
+<script>
+  (function(){
+    var slides = document.querySelectorAll('#featFrame .feat-slide');
+    var dots = document.querySelectorAll('#featDots .feat-dot');
+    var captionH3 = document.querySelector('#featCaption h3');
+    var captionP = document.querySelector('#featCaption p');
+    var current = 0;
+    function show(i){
+      slides[current].classList.remove('active');
+      dots[current].classList.remove('active');
+      current = (i + slides.length) % slides.length;
+      slides[current].classList.add('active');
+      dots[current].classList.add('active');
+      captionH3.textContent = slides[current].getAttribute('data-title');
+      captionP.textContent = slides[current].getAttribute('data-desc');
+    }
+    document.getElementById('featPrev').addEventListener('click', function(){ show(current - 1); });
+    document.getElementById('featNext').addEventListener('click', function(){ show(current + 1); });
+    dots.forEach(function(d){
+      d.addEventListener('click', function(){ show(parseInt(d.getAttribute('data-i'))); });
+    });
+    setInterval(function(){ show(current + 1); }, 6000);
+  })();
+</script>
 </body>
 </html>
