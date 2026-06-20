@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Careers | Green COP</title>
+<title>Media | Green COP</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300..700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap');
 
@@ -621,6 +621,22 @@
     background:rgba(31,164,99,0.14); color:var(--green-deep); margin-bottom:10px;
   }
 </style>
+<style>
+  /* MEDIA PAGE — press releases */
+  .press-list{display:flex; flex-direction:column; gap:1px; background:var(--hairline); border-radius:16px; overflow:hidden; margin-top:8px;}
+  .press-item{background:var(--paper); padding:26px 28px; display:flex; justify-content:space-between; align-items:center; gap:24px; flex-wrap:wrap;}
+  .press-item .press-date{font-family:'IBM Plex Mono',monospace; font-size:12px; color:var(--blue-deep); margin-bottom:6px; display:block;}
+  .press-item h3{font-size:17px; font-weight:500; margin-bottom:6px; max-width:680px;}
+  .press-item p{font-size:13.5px; color:var(--ink-muted); max-width:680px;}
+  .press-link{
+    font-family:'IBM Plex Mono',monospace; font-size:12.5px; white-space:nowrap;
+    color:var(--green-deep); text-decoration:none; border-bottom:1px solid currentColor; flex:0 0 auto;
+  }
+  .press-link:hover{color:var(--blue-deep);}
+  @media (max-width:700px){
+    .press-item{flex-direction:column; align-items:flex-start;}
+  }
+</style>
 
 </head>
 <body>
@@ -645,65 +661,152 @@
 
 <header class="page-hero">
   <div class="wrap">
-    <span class="eyebrow">Careers</span>
-    <h1>Help us build new revenue streams out of plant-based waste.</h1>
-    <p>A small, deep-tech team in Singapore — scientists, operators, and advisors building a circular economy for biofuel.</p>
+    <span class="eyebrow">Media</span>
+    <h1>News, milestones, and the journey so far.</h1>
+    <p>The latest from Green COP — press releases and a look back at the moments that shaped our path.</p>
   </div>
 </header>
 
 <section>
-  <div class="wrap career-wrap">
-
-    <!-- Blurred placeholder content -->
-    <div class="career-blurred">
-      <div class="section-head">
-        <div>
-          <span class="eyebrow">Open roles</span>
-          <h2>Join the team.</h2>
-        </div>
-      </div>
-
-      <div class="role-card-fake glass">
-        <span class="role-tag-fake">Full-time · Singapore</span>
-        <h4>Process Engineer</h4>
-        <p>Support scale-up of our patented fermentation process from pilot to commercial volumes.</p>
-      </div>
-      <div class="role-card-fake glass">
-        <span class="role-tag-fake">Full-time · Singapore</span>
-        <h4>Business Development Manager</h4>
-        <p>Build partnerships across the maritime and transportation sectors in Southeast Asia.</p>
-      </div>
-      <div class="role-card-fake glass">
-        <span class="role-tag-fake">Internship · Singapore</span>
-        <h4>Research Associate</h4>
-        <p>Work alongside our science team on feedstock pretreatment and yield optimisation.</p>
-      </div>
-
-      <div class="ext-divider">
-        <span class="eyebrow">Apply</span>
-        <div class="line"></div>
-      </div>
-
-      <form class="contact-form glass" style="max-width:600px;">
-        <div class="field"><label>Name</label><input type="text" placeholder="Your name"></div>
-        <div class="field"><label>Email</label><input type="email" placeholder="you@email.com"></div>
-        <div class="field"><label>Role applied for</label><input type="text" placeholder="e.g. Process Engineer"></div>
-        <div class="field"><label>LinkedIn</label><input type="text" placeholder="linkedin.com/in/yourname"></div>
-        <div class="field"><label>Portfolio / resume link</label><input type="text" placeholder="Link to your resume or portfolio"></div>
-        <div class="field"><label>Message</label><textarea placeholder="Tell us why you'd be a good fit"></textarea></div>
-        <button type="submit" class="btn btn-primary" style="border:none; cursor:pointer;">Submit application</button>
-      </form>
-    </div>
-
-    <!-- Hiring Soon overlay -->
-    <div class="career-overlay">
-      <div class="career-overlay-card glass">
-        <span class="eyebrow">Hiring soon</span>
-        <h2>We're not actively hiring right now.</h2>
-        <a href="mailto:info@greencop.sg" class="btn btn-primary">Get in touch</a>
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <span class="eyebrow">Press releases</span>
+        <h2>Latest news.</h2>
       </div>
     </div>
+    <div class="press-list">
+  <div class="press-item">
+    <div>
+      <span class="press-date">26 Feb 2026</span>
+      <h3>Green COP Completes Phase 1 Collaboration with IOI, Transitions to Advanced R&D Facility in Singapore</h3>
+      <p>Completion strengthens technical foundation for next development stage.</p>
+    </div>
+    <a href="https://www.greencop.sg/news-1/green-cop-completes-phase-1-collaboration-with-ioi%2C-transitions-to-advanced-r%26d-facility-in-singapore" target="_blank" rel="noopener" class="press-link">Read on greencop.sg →</a>
+  </div>
+  <div class="press-item">
+    <div>
+      <span class="press-date">23 Oct 2025</span>
+      <h3>Green COP and Chemtex Partner to Scale Global Biobutanol Production</h3>
+      <p>Collaboration merges Green COP's waste-to-fuel technology with Chemtex's engineering expertise, with YIT bridging the partnership to advance sustainable fuels worldwide.</p>
+    </div>
+    <a href="https://www.greencop.sg/news-1/green-cop-and-chemtex-partner-to-scale-global-biobutanol-production" target="_blank" rel="noopener" class="press-link">Read on greencop.sg →</a>
+  </div>
+  <div class="press-item">
+    <div>
+      <span class="press-date">11 Sept 2025</span>
+      <h3>Sustainable Fuel Technology Company Green COP Selected as Breakthrough Energy Fellow</h3>
+      <p>Converts agricultural waste into bio-butanol, a drop-in fuel for maritime and a green chemical for industry.</p>
+    </div>
+    <a href="https://www.greencop.sg/news-1/sustainable-fuel-technology-company-green-cop-selected-as-breakthrough-energy-fellow" target="_blank" rel="noopener" class="press-link">Read on greencop.sg →</a>
+  </div>
+  <div class="press-item">
+    <div>
+      <span class="press-date">14 Mar 2025</span>
+      <h3>Green COP and Universiti Malaya Forge MoU for Research and Education Collaboration</h3>
+      <p>Aims to support R&D and knowledge exchange in sustainable energy technologies.</p>
+    </div>
+    <a href="https://www.greencop.sg/news-1/green-cop-and-universiti-malaya-forge-mou-for-research-and-education-collaboration" target="_blank" rel="noopener" class="press-link">Read on greencop.sg →</a>
+  </div>
+  <div class="press-item">
+    <div>
+      <span class="press-date">24 Sept 2024</span>
+      <h3>Green COP Secures ISCC EU Certification</h3>
+      <p>Strengthening commitment to sustainable supply chain practices.</p>
+    </div>
+    <a href="https://www.greencop.sg/news-1/green-cop-secures-iscc-eu-certification" target="_blank" rel="noopener" class="press-link">Read on greencop.sg →</a>
+  </div>
+  <div class="press-item">
+    <div>
+      <span class="press-date">30 May 2024</span>
+      <h3>Green COP Launches Pre-commercial Plant in Johor, Malaysia</h3>
+      <p>Aims to produce the first tonne of sustainable biofuels by the third quarter.</p>
+    </div>
+    <a href="https://www.greencop.sg/news-1/green-cop-launches-pre-commercial-plant-in-johor%2C-malaysia-" target="_blank" rel="noopener" class="press-link">Read on greencop.sg →</a>
+  </div>
+  <div class="press-item">
+    <div>
+      <span class="press-date">16 Apr 2024</span>
+      <h3>Ken Energy Pte Ltd Partners with Green COP to Advance Sustainable Biofuel Solutions</h3>
+      <p>Inks MOU at Singapore Maritime Week Expo.</p>
+    </div>
+    <a href="https://www.greencop.sg/news-1/ken-energy-pte-ltd-partners-with-green-cop-to-advance-sustainable-biofuel-solutions" target="_blank" rel="noopener" class="press-link">Read on greencop.sg →</a>
+  </div>
+  <div class="press-item">
+    <div>
+      <span class="press-date">15 Mar 2024</span>
+      <h3>Green COP Announces Strategic Collaboration with IOI</h3>
+      <p>Upcycling empty palm fruit bunches into sustainable marine fuels.</p>
+    </div>
+    <a href="https://www.greencop.sg/news-1/green-cop-announces-strategic-collaboration-with-ioi" target="_blank" rel="noopener" class="press-link">Read on greencop.sg →</a>
+  </div>
+  <div class="press-item">
+    <div>
+      <span class="press-date">13 Feb 2024</span>
+      <h3>Green COP Secures Significant Angel Investment, Appoints Teo Teng Seng as Chairman</h3>
+      <p>Sustainability start-up poised to establish a biofuel pilot plant.</p>
+    </div>
+    <a href="https://www.greencop.sg/news-1/green-cop-secures-significant-angel-investment%2C-appoints-teo-teng-seng-as-chairman" target="_blank" rel="noopener" class="press-link">Read on greencop.sg →</a>
+  </div>
+    </div>
+  </div>
+</section>
 
+<section class="process">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <span class="eyebrow">Our journey</span>
+        <h2>From founding to scale.</h2>
+      </div>
+      <p class="lede">Highlights — for the full archive of events, visit our LinkedIn.</p>
+    </div>
+    <div class="timeline tl-rail">
+  <div class="tl-item">
+    <div class="tl-year">Sept 2021</div>
+    <div><h3>Shell StartUp Engine, Class of 2021</h3><p>Selected as one of the TOP 6 startups to join the Shell StartUp Engine Singapore 2021 Program.</p></div>
+  </div>
+  <div class="tl-item">
+    <div class="tl-year">Nov 2022</div>
+    <div><h3>Smart Port Challenge 2022</h3><p>First runner-up in PIER71's Smart Port Challenge, an annual innovation competition for maritime start-ups.</p></div>
+  </div>
+  <div class="tl-item">
+    <div class="tl-year">Feb 2024</div>
+    <div><h3>Angel Investment & New Chairman</h3><p>Closed a significant angel round and appointed maritime veteran Teo Teng Seng as Chairman.</p></div>
+  </div>
+  <div class="tl-item">
+    <div class="tl-year">Mar 2024</div>
+    <div><h3>Strategic Collaboration with IOI</h3><p>Announced a partnership to upcycle empty palm fruit bunches into sustainable marine fuels.</p></div>
+  </div>
+  <div class="tl-item">
+    <div class="tl-year">Apr 2024</div>
+    <div><h3>Ken Energy Partnership</h3><p>Inked an MOU with Ken Energy Pte Ltd at Singapore Maritime Week to advance biofuel solutions.</p></div>
+  </div>
+  <div class="tl-item">
+    <div class="tl-year">May 2024</div>
+    <div><h3>Pre-commercial Plant in Johor</h3><p>Launched our first pre-commercial biofuel plant in Johor, Malaysia.</p></div>
+  </div>
+  <div class="tl-item">
+    <div class="tl-year">Sept 2024</div>
+    <div><h3>ISCC EU Certification</h3><p>Secured ISCC EU certification, strengthening our sustainable supply chain credentials.</p></div>
+  </div>
+  <div class="tl-item">
+    <div class="tl-year">Mar 2025</div>
+    <div><h3>Universiti Malaya MoU</h3><p>Forged an MoU with Universiti Malaya for research and education collaboration in sustainable energy.</p></div>
+  </div>
+  <div class="tl-item">
+    <div class="tl-year">Sept 2025</div>
+    <div><h3>Breakthrough Energy Fellow</h3><p>Selected as a Breakthrough Energy Fellow, joining a global network backing deep-tech climate ventures.</p></div>
+  </div>
+  <div class="tl-item">
+    <div class="tl-year">Oct 2025</div>
+    <div><h3>Chemtex Partnership</h3><p>Partnered with Chemtex to scale global biobutanol production, bridged by YIT.</p></div>
+  </div>
+  <div class="tl-item">
+    <div class="tl-year">Feb 2026</div>
+    <div><h3>Advanced R&D Facility</h3><p>Completed Phase 1 of our IOI collaboration and transitioned to an advanced R&D facility in Singapore.</p></div>
+  </div>
+</div>
   </div>
 </section>
 
