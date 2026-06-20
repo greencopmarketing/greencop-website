@@ -579,6 +579,22 @@
 </style>
 
 
+<style>
+  .hero-card.bare{
+    padding:0; max-width:620px; border-radius:0; background:none; border:none;
+    box-shadow:none; -webkit-backdrop-filter:none; backdrop-filter:none;
+  }
+  .hero-card.bare .eyebrow{
+    color:#fff !important; -webkit-text-fill-color:#fff !important;
+    text-shadow:0 1px 8px rgba(0,0,0,0.35);
+  }
+  .hero-card.bare h1{color:#fff; text-shadow:0 2px 16px rgba(0,0,0,0.35);}
+  .hero-card.bare h1 em{
+    background:linear-gradient(90deg, #7BE0A8, #7FC6F2);
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+  }
+  .hero-card.bare p{color:rgba(255,255,255,0.92); text-shadow:0 1px 10px rgba(0,0,0,0.3); margin-bottom:0;}
+</style>
 </head>
 <body>
 <div class="blob blob-1"></div>
@@ -597,19 +613,15 @@
 </nav>
 <div class="convert-bar"></div>
 
-<!-- SOLUTIONS HERO — background video, same treatment as home, looping 0:10–1:00 -->
+<!-- SOLUTIONS HERO — background video, plain text, no card, no buttons -->
 <header class="hero">
   <video class="hero-video" id="solHeroVideo" muted loop playsinline autoplay poster="https://static.wixstatic.com/media/08b376_e146e559a7854d9a97005832dbdab930~mv2.jpg"></video>
   <div class="hero-scrim"></div>
   <div class="wrap">
-    <div class="hero-card glass">
+    <div class="hero-card bare">
       <span class="eyebrow">Solutions</span>
       <h1>From plant waste to <em>finished biofuel</em>, in two patented steps.</h1>
       <p>A two-step, ambient-condition process built for scale — engineered for the realities of maritime and transport infrastructure.</p>
-      <div class="btn-row">
-        <a href="#flow" class="btn btn-primary">See the process flow</a>
-        <a href="index.html#contact" class="btn btn-ghost">Talk to our team</a>
-      </div>
     </div>
   </div>
 </header>
