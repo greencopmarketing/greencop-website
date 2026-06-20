@@ -108,7 +108,7 @@
   /* HERO with video background */
   .hero{
     position:relative;
-    padding:160px 0 140px;
+    padding:160px 0 100px;
     overflow:hidden;
     min-height:640px;
     display:flex; align-items:center;
@@ -370,7 +370,7 @@
 </style>
 <style>
   /* TEAM PAGE REDESIGN */
-  .leader-row{display:grid; grid-template-columns:repeat(4,1fr); gap:22px; margin-top:8px;}
+  .leader-row{display:grid; grid-template-columns:repeat(4,1fr); gap:22px; margin-top:48px;}
   .leader-card{padding:0; overflow:hidden; position:relative;}
   .leader-card img{width:100%; aspect-ratio:3/4; object-fit:cover; display:block;}
   .leader-info{padding:20px 22px 24px;}
@@ -402,7 +402,7 @@
 </style>
 <style>
   /* FEATURED-BY MARQUEE (train slide) */
-  .featured-strip{padding:40px 0 48px; position:relative;}
+  .featured-strip{padding:64px 0 48px; position:relative;}
   .featured-strip .strip-head{text-align:center; margin-bottom:28px;}
   .marquee-mask{
     overflow:hidden; position:relative;
@@ -578,6 +578,23 @@
   }
 </style>
 
+<style>
+  /* Bare hero-card variant — no box, just clean text on video (used on Solutions hero) */
+  .hero-card.bare{
+    padding:0; max-width:620px; border-radius:0; background:none; border:none;
+    box-shadow:none; -webkit-backdrop-filter:none; backdrop-filter:none;
+  }
+  .hero-card.bare .eyebrow{
+    color:#fff !important; -webkit-text-fill-color:#fff !important;
+    text-shadow:0 1px 8px rgba(0,0,0,0.35);
+  }
+  .hero-card.bare h1{color:#fff; text-shadow:0 2px 16px rgba(0,0,0,0.35);}
+  .hero-card.bare h1 em{
+    background:linear-gradient(90deg, #7BE0A8, #7FC6F2);
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+  }
+  .hero-card.bare p{color:rgba(255,255,255,0.92); text-shadow:0 1px 10px rgba(0,0,0,0.3); margin-bottom:0;}
+</style>
 
 </head>
 <body>
@@ -597,7 +614,6 @@
 </nav>
 <div class="convert-bar"></div>
 
-<!-- HERO -->
 <header class="hero">
   <video class="hero-video" id="heroVideo" autoplay muted loop playsinline poster="https://static.wixstatic.com/media/08b376_033fedc694984fb1a7e0dc18f01efa97~mv2.png"></video>
   <div class="hero-scrim"></div>
@@ -614,7 +630,6 @@
   </div>
 </header>
 
-<!-- FEATURED BY (train slide marquee) -->
 <section class="featured-strip">
   <div class="wrap strip-head">
     <span class="eyebrow">As featured by</span>
@@ -647,7 +662,6 @@
 
 <div class="hairline"></div>
 
-<!-- STORY — heading now lives inside the grid so the photo aligns to its top -->
 <section id="story">
   <div class="wrap">
     <div class="story-grid">
@@ -671,7 +685,6 @@
   </div>
 </section>
 
-<!-- OUR JOURNEY -->
 <section id="journey" class="process">
   <div class="wrap">
     <div class="section-head">
@@ -772,7 +785,6 @@
   </div>
 </section>
 
-<!-- CONTACT -->
 <section id="contact">
   <div class="wrap">
     <div class="contact-grid">
