@@ -181,7 +181,7 @@
   .lede{color:var(--ink-muted); max-width:420px; font-size:15.5px;}
 
   /* STORY */
-  .story-grid{display:grid; grid-template-columns:1.1fr 0.9fr; gap:40px; align-items:start;}
+  .story-grid{display:grid; grid-template-columns:1.1fr 0.9fr; gap:40px; align-items:center;}
   .story-grid p{color:var(--ink-muted); margin-bottom:18px; font-size:16px;}
   .quote-card{padding:34px;}
   .quote-card p{
@@ -340,6 +340,7 @@
   .tl-year{font-family:'IBM Plex Mono',monospace; font-size:15px; color:var(--blue-deep); padding-top:2px;}
   .tl-item h3{font-size:18px; margin-bottom:6px; font-weight:500;}
   .tl-item p{font-size:14px; color:var(--ink-muted); max-width:560px;}
+  .tl-thumb{width:100%; max-width:160px; height:90px; object-fit:cover; border-radius:10px; margin-top:10px; display:block;}
   .tl-rail{position:relative;}
   .tl-rail::before{content:''; position:absolute; left:0; top:8px; bottom:8px; width:2px; background:linear-gradient(180deg, var(--green), var(--blue)); margin-left:0;}
 
@@ -404,10 +405,13 @@
     mask-image:linear-gradient(90deg, transparent, black 10%, black 90%, transparent);
   }
   .marquee-track{
-    display:flex; gap:72px; align-items:center; width:max-content;
+    display:flex; gap:36px; align-items:center; width:max-content;
     animation:marquee-scroll 26s linear infinite;
   }
-  .marquee-track img{height:30px; width:auto; opacity:.75;}
+  .marquee-item{
+    width:120px; height:42px; display:flex; align-items:center; justify-content:center; flex:0 0 auto;
+  }
+  .marquee-track img{max-height:34px; max-width:100%; width:auto; object-fit:contain; opacity:.8;}
   .marquee-mask:hover .marquee-track{animation-play-state:paused;}
   @keyframes marquee-scroll{
     from{transform:translateX(0);}
@@ -465,21 +469,73 @@
     z-index:2;
   }
   .road-card{
-    position:absolute; width:44%; padding:20px 22px; transform:translateY(-50%); z-index:2;
+    position:absolute; width:46%; padding:18px; transform:translateY(-50%); z-index:2;
+    display:flex; gap:14px; align-items:flex-start;
   }
+  .road-thumb{
+    width:60px; height:60px; border-radius:12px; object-fit:cover; flex:0 0 auto;
+  }
+  .road-text{min-width:0;}
   .road-card .yr{
-    font-family:'Fraunces',serif; font-size:28px; margin-bottom:6px;
+    font-family:'Fraunces',serif; font-size:24px; margin-bottom:4px;
     background:linear-gradient(90deg, var(--green-deep), var(--blue-deep));
     -webkit-background-clip:text; background-clip:text; color:transparent;
   }
-  .road-card h3{font-size:16px; margin-bottom:6px; font-weight:500;}
-  .road-card p{font-size:13px; color:var(--ink-muted); line-height:1.5;}
+  .road-card h3{font-size:15px; margin-bottom:5px; font-weight:500;}
+  .road-card p{font-size:12.5px; color:var(--ink-muted); line-height:1.45;}
 
   .journey-fallback{display:none;}
 
   @media (max-width:760px){
     .journey-road{display:none;}
     .journey-fallback{display:block; margin-top:8px;}
+  }
+</style>
+<style>
+  /* SOLUTIONS HERO — video + text side by side */
+  .sol-hero{padding:150px 0 70px;}
+  .sol-hero-grid{display:grid; grid-template-columns:1.05fr 0.95fr; gap:48px; align-items:center;}
+  .sol-video-wrap{
+    border-radius:20px; overflow:hidden; position:relative; aspect-ratio:16/10;
+    box-shadow:0 8px 32px rgba(16,36,28,0.12);
+  }
+  .sol-video-wrap video{width:100%; height:100%; object-fit:cover; display:block;}
+  .sol-video-cap{
+    font-family:'IBM Plex Mono',monospace; font-size:11.5px; color:var(--ink-muted);
+    margin-top:10px; text-align:center;
+  }
+  @media (max-width:900px){
+    .sol-hero-grid{grid-template-columns:1fr;}
+  }
+
+  /* PROCESS FLOW — Agri-waste to Bio-butanol (detailed pipeline) */
+  .flow-row{display:grid; grid-template-columns:repeat(5,1fr); gap:1px; background:var(--hairline); border-radius:16px; overflow:hidden; margin-top:48px;}
+  .flow-step{background:var(--paper); padding:24px 18px; text-align:center; position:relative;}
+  .flow-num{
+    width:26px; height:26px; border-radius:50%; margin:0 auto 14px;
+    background:linear-gradient(90deg, var(--green), var(--blue)); color:#fff;
+    display:flex; align-items:center; justify-content:center;
+    font-family:'IBM Plex Mono',monospace; font-size:12px; font-weight:600;
+  }
+  .flow-icon{font-size:24px; margin-bottom:10px;}
+  .flow-step h4{font-size:13.5px; font-weight:500; line-height:1.3;}
+  .flow-step:not(:last-child)::after{
+    content:'→'; position:absolute; right:-2px; top:50%; transform:translateY(-50%);
+    color:var(--ink-muted); font-size:14px; z-index:2;
+  }
+  .flow-byproducts{display:flex; gap:16px; flex-wrap:wrap; justify-content:center; margin-top:28px;}
+  .flow-byproduct{
+    display:flex; align-items:center; gap:8px; padding:10px 16px; border-radius:999px;
+    font-family:'IBM Plex Mono',monospace; font-size:11.5px; color:var(--ink-muted);
+  }
+  .flow-outputs{display:flex; gap:16px; justify-content:center; margin-top:20px;}
+  .flow-output{
+    display:flex; align-items:center; gap:10px; padding:14px 24px; border-radius:14px;
+    font-family:'Fraunces',serif; font-size:16px;
+  }
+  @media (max-width:760px){
+    .flow-row{grid-template-columns:1fr; }
+    .flow-step:not(:last-child)::after{content:'↓'; right:50%; top:auto; bottom:-2px; transform:translateX(50%);}
   }
 </style>
 
@@ -525,22 +581,26 @@
   </div>
   <div class="marquee-mask">
     <div class="marquee-track">
-        <img src="https://static.wixstatic.com/media/08b376_d3a809eaa3ea46348838768adb0eea5d~mv2.png" alt="CNA">
-        <img src="https://static.wixstatic.com/media/08b376_ed6eb443695341d09707a3bba1121170~mv2.png" alt="Featured press">
-        <img src="https://static.wixstatic.com/media/08b376_58a15b9d7ad74d5d85301247c3af7dce~mv2.png" alt="Lianhe Zaobao">
-        <img src="https://static.wixstatic.com/media/08b376_755a0def94c248a1a8b83a196c13202a~mv2.png" alt="S&P Global">
-        <img src="https://static.wixstatic.com/media/08b376_d6679d8bdfbf4857ac83cb46d08cfbb6~mv2.png" alt="Shell StartUp Engine">
-        <img src="https://static.wixstatic.com/media/08b376_0d3e67ab4afb41fc8055c718e49d54f8~mv2.png" alt="PIER71 and MPA">
-        <img src="https://static.wixstatic.com/media/08b376_0e8e5555c9e34a6b92b386d3804f7318~mv2.png" alt="NUS Enterprise">
-        <img src="https://static.wixstatic.com/media/08b376_2a26ed874e3d4d2487b33680004f52f1~mv2.png" alt="UM">
-        <img src="https://static.wixstatic.com/media/08b376_d3a809eaa3ea46348838768adb0eea5d~mv2.png" alt="CNA">
-        <img src="https://static.wixstatic.com/media/08b376_ed6eb443695341d09707a3bba1121170~mv2.png" alt="Featured press">
-        <img src="https://static.wixstatic.com/media/08b376_58a15b9d7ad74d5d85301247c3af7dce~mv2.png" alt="Lianhe Zaobao">
-        <img src="https://static.wixstatic.com/media/08b376_755a0def94c248a1a8b83a196c13202a~mv2.png" alt="S&P Global">
-        <img src="https://static.wixstatic.com/media/08b376_d6679d8bdfbf4857ac83cb46d08cfbb6~mv2.png" alt="Shell StartUp Engine">
-        <img src="https://static.wixstatic.com/media/08b376_0d3e67ab4afb41fc8055c718e49d54f8~mv2.png" alt="PIER71 and MPA">
-        <img src="https://static.wixstatic.com/media/08b376_0e8e5555c9e34a6b92b386d3804f7318~mv2.png" alt="NUS Enterprise">
-        <img src="https://static.wixstatic.com/media/08b376_2a26ed874e3d4d2487b33680004f52f1~mv2.png" alt="UM">
+        <div class="marquee-item"><img src="https://static.wixstatic.com/media/08b376_d3a809eaa3ea46348838768adb0eea5d~mv2.png" alt="CNA"></div>
+        <div class="marquee-item"><img src="https://static.wixstatic.com/media/08b376_58a15b9d7ad74d5d85301247c3af7dce~mv2.png" alt="Lianhe Zaobao"></div>
+        <div class="marquee-item"><img src="https://static.wixstatic.com/media/08b376_ed6eb443695341d09707a3bba1121170~mv2.png" alt="Press feature"></div>
+        <div class="marquee-item"><img src="https://static.wixstatic.com/media/08b376_755a0def94c248a1a8b83a196c13202a~mv2.png" alt="S&P Global"></div>
+        <div class="marquee-item"><img src="https://static.wixstatic.com/media/08b376_2a62f22cd9914c999ad7b6f33322c4dc~mv2.png" alt="Temasek Foundation"></div>
+        <div class="marquee-item"><img src="https://static.wixstatic.com/media/08b376_dbf6c1a588ac423e80c7cdedf2f761d9~mv2.png" alt="Universiti Malaya"></div>
+        <div class="marquee-item"><img src="https://static.wixstatic.com/media/08b376_da7f9732d69748f6bb9e0180321b959c~mv2.png" alt="NUS GRIP"></div>
+        <div class="marquee-item"><img src="https://static.wixstatic.com/media/08b376_0d3e67ab4afb41fc8055c718e49d54f8~mv2.png" alt="PIER71 and MPA"></div>
+        <div class="marquee-item"><img src="https://static.wixstatic.com/media/08b376_d6679d8bdfbf4857ac83cb46d08cfbb6~mv2.png" alt="Shell StartUp Engine"></div>
+        <div class="marquee-item"><img src="https://static.wixstatic.com/media/08b376_0e8e5555c9e34a6b92b386d3804f7318~mv2.png" alt="NUS Enterprise"></div>
+        <div class="marquee-item"><img src="https://static.wixstatic.com/media/08b376_d3a809eaa3ea46348838768adb0eea5d~mv2.png" alt="CNA"></div>
+        <div class="marquee-item"><img src="https://static.wixstatic.com/media/08b376_58a15b9d7ad74d5d85301247c3af7dce~mv2.png" alt="Lianhe Zaobao"></div>
+        <div class="marquee-item"><img src="https://static.wixstatic.com/media/08b376_ed6eb443695341d09707a3bba1121170~mv2.png" alt="Press feature"></div>
+        <div class="marquee-item"><img src="https://static.wixstatic.com/media/08b376_755a0def94c248a1a8b83a196c13202a~mv2.png" alt="S&P Global"></div>
+        <div class="marquee-item"><img src="https://static.wixstatic.com/media/08b376_2a62f22cd9914c999ad7b6f33322c4dc~mv2.png" alt="Temasek Foundation"></div>
+        <div class="marquee-item"><img src="https://static.wixstatic.com/media/08b376_dbf6c1a588ac423e80c7cdedf2f761d9~mv2.png" alt="Universiti Malaya"></div>
+        <div class="marquee-item"><img src="https://static.wixstatic.com/media/08b376_da7f9732d69748f6bb9e0180321b959c~mv2.png" alt="NUS GRIP"></div>
+        <div class="marquee-item"><img src="https://static.wixstatic.com/media/08b376_0d3e67ab4afb41fc8055c718e49d54f8~mv2.png" alt="PIER71 and MPA"></div>
+        <div class="marquee-item"><img src="https://static.wixstatic.com/media/08b376_d6679d8bdfbf4857ac83cb46d08cfbb6~mv2.png" alt="Shell StartUp Engine"></div>
+        <div class="marquee-item"><img src="https://static.wixstatic.com/media/08b376_0e8e5555c9e34a6b92b386d3804f7318~mv2.png" alt="NUS Enterprise"></div>
     </div>
   </div>
 </section>
@@ -575,7 +635,7 @@
   </div>
 </section>
 
-<!-- OUR JOURNEY — winding road map -->
+<!-- OUR JOURNEY — winding road map with photos -->
 <section id="journey" class="process">
   <div class="wrap">
     <div class="section-head">
@@ -601,56 +661,76 @@
     <circle cx="160" cy="1059.5" r="9" fill="#1F8AE0"/>
 </svg>
   <div class="road-marker" style="left:20%; top:7.7%; background:#1FA463;"></div>
-  <div class="road-card glass" style="left:26%; top:7.7%;">
-    <div class="yr">2021</div>
-    <h3>Founded</h3>
-    <p>Green COP founded in Singapore with a mission to convert biowaste into biofuels.</p>
+  <div class="road-card glass" style="left:24%; top:7.7%;">
+    <img class="road-thumb" src="https://static.wixstatic.com/media/08b376_6db818335f9a4fd1aa4e0dc1fcf1cb24~mv2.jpg" alt="Founded">
+    <div class="road-text">
+      <div class="yr">2021</div>
+      <h3>Founded</h3>
+      <p>Green COP founded in Singapore with a mission to convert biowaste into biofuels.</p>
+    </div>
   </div>
   <div class="road-marker" style="left:80%; top:26.2%; background:#19A07A;"></div>
-  <div class="road-card glass" style="right:26%; top:26.2%;">
-    <div class="yr">2022</div>
-    <h3>Smart Port Challenge</h3>
-    <p>Recognised at the MPA &amp; NUS Enterprise Smart Port Challenge.</p>
+  <div class="road-card glass" style="right:24%; top:26.2%;">
+    <img class="road-thumb" src="https://static.wixstatic.com/media/08b376_4e58df7e859e40448d31d1078344d235~mv2.jpeg" alt="Smart Port Challenge">
+    <div class="road-text">
+      <div class="yr">2022</div>
+      <h3>Smart Port Challenge</h3>
+      <p>Runner-up at the MPA &amp; PIER71 Smart Port Challenge 2022.</p>
+    </div>
   </div>
   <div class="road-marker" style="left:20%; top:44.6%; background:#159892;"></div>
-  <div class="road-card glass" style="left:26%; top:44.6%;">
-    <div class="yr">2023</div>
-    <h3>Patents &amp; ISCC</h3>
-    <p>Secured patents for our two-step biofuel process and achieved ISCC certification.</p>
+  <div class="road-card glass" style="left:24%; top:44.6%;">
+    <img class="road-thumb" src="https://static.wixstatic.com/media/08b376_b152e62bb6e944b6884d27c5794f5620~mv2.png" alt="Patents &amp; ISCC">
+    <div class="road-text">
+      <div class="yr">2023</div>
+      <h3>Patents &amp; ISCC</h3>
+      <p>Secured patents for our two-step biofuel process and achieved ISCC certification.</p>
+    </div>
   </div>
   <div class="road-marker" style="left:80%; top:63.1%; background:#1690AB;"></div>
-  <div class="road-card glass" style="right:26%; top:63.1%;">
-    <div class="yr">2024</div>
-    <h3>Angel funding &amp; plant</h3>
-    <p>Closed an angel round and established a pre-commercial plant in Johor, Malaysia.</p>
+  <div class="road-card glass" style="right:24%; top:63.1%;">
+    <img class="road-thumb" src="https://static.wixstatic.com/media/08b376_e146e559a7854d9a97005832dbdab930~mv2.jpg" alt="Angel funding &amp; plant">
+    <div class="road-text">
+      <div class="yr">2024</div>
+      <h3>Angel funding &amp; plant</h3>
+      <p>Closed an angel round and established a pre-commercial plant in Johor, Malaysia.</p>
+    </div>
   </div>
   <div class="road-marker" style="left:20%; top:81.5%; background:#1F8AE0;"></div>
-  <div class="road-card glass" style="left:26%; top:81.5%;">
-    <div class="yr">2025</div>
-    <h3>Strategic partnership</h3>
-    <p>Partnered with a leading palm oil group to commercialise sustainable marine fuels at scale.</p>
+  <div class="road-card glass" style="left:24%; top:81.5%;">
+    <img class="road-thumb" src="https://static.wixstatic.com/media/08b376_87a1bb97ab784f63b91c84340b6912c9~mv2.png" alt="Strategic partnership">
+    <div class="road-text">
+      <div class="yr">2025</div>
+      <h3>Strategic partnership</h3>
+      <p>Partnered with a leading palm oil group to commercialise sustainable marine fuels at scale.</p>
+    </div>
   </div>
     </div>
     <div class="journey-fallback timeline tl-rail">
   <div class="tl-item">
     <div class="tl-year">2021</div>
-    <div><h3>Founded</h3><p>Green COP founded in Singapore with a mission to convert biowaste into biofuels.</p></div>
+    <div><h3>Founded</h3><p>Green COP founded in Singapore with a mission to convert biowaste into biofuels.</p>
+    <img class="tl-thumb" src="https://static.wixstatic.com/media/08b376_6db818335f9a4fd1aa4e0dc1fcf1cb24~mv2.jpg" alt="Founded"></div>
   </div>
   <div class="tl-item">
     <div class="tl-year">2022</div>
-    <div><h3>Smart Port Challenge</h3><p>Recognised at the MPA &amp; NUS Enterprise Smart Port Challenge.</p></div>
+    <div><h3>Smart Port Challenge</h3><p>Runner-up at the MPA &amp; PIER71 Smart Port Challenge 2022.</p>
+    <img class="tl-thumb" src="https://static.wixstatic.com/media/08b376_4e58df7e859e40448d31d1078344d235~mv2.jpeg" alt="Smart Port Challenge"></div>
   </div>
   <div class="tl-item">
     <div class="tl-year">2023</div>
-    <div><h3>Patents &amp; ISCC</h3><p>Secured patents for our two-step biofuel process and achieved ISCC certification.</p></div>
+    <div><h3>Patents &amp; ISCC</h3><p>Secured patents for our two-step biofuel process and achieved ISCC certification.</p>
+    <img class="tl-thumb" src="https://static.wixstatic.com/media/08b376_b152e62bb6e944b6884d27c5794f5620~mv2.png" alt="Patents &amp; ISCC"></div>
   </div>
   <div class="tl-item">
     <div class="tl-year">2024</div>
-    <div><h3>Angel funding &amp; plant</h3><p>Closed an angel round and established a pre-commercial plant in Johor, Malaysia.</p></div>
+    <div><h3>Angel funding &amp; plant</h3><p>Closed an angel round and established a pre-commercial plant in Johor, Malaysia.</p>
+    <img class="tl-thumb" src="https://static.wixstatic.com/media/08b376_e146e559a7854d9a97005832dbdab930~mv2.jpg" alt="Angel funding &amp; plant"></div>
   </div>
   <div class="tl-item">
     <div class="tl-year">2025</div>
-    <div><h3>Strategic partnership</h3><p>Partnered with a leading palm oil group to commercialise sustainable marine fuels at scale.</p></div>
+    <div><h3>Strategic partnership</h3><p>Partnered with a leading palm oil group to commercialise sustainable marine fuels at scale.</p>
+    <img class="tl-thumb" src="https://static.wixstatic.com/media/08b376_87a1bb97ab784f63b91c84340b6912c9~mv2.png" alt="Strategic partnership"></div>
   </div>
 </div>
   </div>
