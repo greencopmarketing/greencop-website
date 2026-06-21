@@ -746,12 +746,12 @@
         </div>
       </div>
 
-      <form class="contact-form glass">
-        <div class="field"><label>Name</label><input type="text" placeholder="Your name"></div>
-        <div class="field"><label>Email</label><input type="email" placeholder="you@company.com"></div>
+      <form class="contact-form glass" id="contact-form">
+        <div class="field"><label>Name</label><input type="text" id="cf-name" name="name" placeholder="Your name" required></div>
+        <div class="field"><label>Email</label><input type="email" id="cf-email" name="email" placeholder="you@company.com" required></div>
         <div class="field">
           <label>Inquiry type</label>
-          <select>
+          <select id="cf-inquiry-type" name="inquiry_type">
             <option value="">Select an option</option>
             <option value="partnership">Partnership</option>
             <option value="press">Press</option>
@@ -759,8 +759,9 @@
             <option value="general">General</option>
           </select>
         </div>
-        <div class="field"><label>Message</label><textarea placeholder="Tell us a little about what you're looking for"></textarea></div>
-        <button type="submit" class="btn btn-primary" style="border:none; cursor:pointer;">Send inquiry</button>
+        <div class="field"><label>Message</label><textarea id="cf-message" name="message" placeholder="Tell us a little about what you're looking for" required></textarea></div>
+        <button type="submit" class="btn btn-primary" id="cf-submit" style="border:none; cursor:pointer;">Send inquiry</button>
+        <p id="cf-status" style="font-size:13.5px; margin-top:10px; display:none;"></p>
       </form>
     </div>
   </div>
@@ -773,5 +774,50 @@
     <div class="footer-meta">© 2026 Green COP Pte. Ltd. — Singapore</div>
   </div>
 </footer>
+
+<script type="module">
+  import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
+
+  const supabase = createClient(
+    'https://sjxiuegbygdcavgaqshq.supabase.co',
+    'sb_publishable_KYveA_AQ6atSjQtB2f1eug_TR6mTS8a'
+  );
+
+  const form = document.getElementById('contact-form');
+  const statusEl = document.getElementById('cf-status');
+  const submitBtn = document.getElementById('cf-submit');
+
+  function showStatus(message, isError) {
+    statusEl.textContent = message;
+    statusEl.style.display = 'block';
+    statusEl.style.color = isError ? '#c0392b' : '#1f7a3f';
+  }
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Sending…';
+
+    const payload = {
+      name: document.getElementById('cf-name').value.trim(),
+      email: document.getElementById('cf-email').value.trim(),
+      inquiry_type: document.getElementById('cf-inquiry-type').value || null,
+      message: document.getElementById('cf-message').value.trim()
+    };
+
+    const { error } = await supabase.from('contact_submissions').insert(payload);
+
+    if (error) {
+      showStatus("Something went wrong sending your message. Please try again or email us directly.", true);
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Send inquiry';
+    } else {
+      showStatus("Thanks — your message has been sent. We'll be in touch soon.", false);
+      form.reset();
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Send inquiry';
+    }
+  });
+</script>
 </body>
 </html>

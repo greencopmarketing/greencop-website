@@ -724,79 +724,8 @@
         <h2>Latest news.</h2>
       </div>
     </div>
-    <div class="press-list">
-  <div class="press-item">
-    <div>
-      <span class="press-date">26 Feb 2026</span>
-      <h3>Green COP Completes Phase 1 Collaboration with IOI, Transitions to Advanced R&D Facility in Singapore</h3>
-      <p>Completion strengthens technical foundation for next development stage.</p>
-    </div>
-    <a href="https://www.greencop.sg/news-1/green-cop-completes-phase-1-collaboration-with-ioi%2C-transitions-to-advanced-r%26d-facility-in-singapore" target="_blank" rel="noopener" class="press-link">Read on greencop.sg →</a>
-  </div>
-  <div class="press-item">
-    <div>
-      <span class="press-date">23 Oct 2025</span>
-      <h3>Green COP and Chemtex Partner to Scale Global Biobutanol Production</h3>
-      <p>Collaboration merges Green COP's waste-to-fuel technology with Chemtex's engineering expertise, with YIT bridging the partnership to advance sustainable fuels worldwide.</p>
-    </div>
-    <a href="https://www.greencop.sg/news-1/green-cop-and-chemtex-partner-to-scale-global-biobutanol-production" target="_blank" rel="noopener" class="press-link">Read on greencop.sg →</a>
-  </div>
-  <div class="press-item">
-    <div>
-      <span class="press-date">11 Sept 2025</span>
-      <h3>Sustainable Fuel Technology Company Green COP Selected as Breakthrough Energy Fellow</h3>
-      <p>Converts agricultural waste into bio-butanol, a drop-in fuel for maritime and a green chemical for industry.</p>
-    </div>
-    <a href="https://www.greencop.sg/news-1/sustainable-fuel-technology-company-green-cop-selected-as-breakthrough-energy-fellow" target="_blank" rel="noopener" class="press-link">Read on greencop.sg →</a>
-  </div>
-  <div class="press-item">
-    <div>
-      <span class="press-date">14 Mar 2025</span>
-      <h3>Green COP and Universiti Malaya Forge MoU for Research and Education Collaboration</h3>
-      <p>Aims to support R&D and knowledge exchange in sustainable energy technologies.</p>
-    </div>
-    <a href="https://www.greencop.sg/news-1/green-cop-and-universiti-malaya-forge-mou-for-research-and-education-collaboration" target="_blank" rel="noopener" class="press-link">Read on greencop.sg →</a>
-  </div>
-  <div class="press-item">
-    <div>
-      <span class="press-date">24 Sept 2024</span>
-      <h3>Green COP Secures ISCC EU Certification</h3>
-      <p>Strengthening commitment to sustainable supply chain practices.</p>
-    </div>
-    <a href="https://www.greencop.sg/news-1/green-cop-secures-iscc-eu-certification" target="_blank" rel="noopener" class="press-link">Read on greencop.sg →</a>
-  </div>
-  <div class="press-item">
-    <div>
-      <span class="press-date">30 May 2024</span>
-      <h3>Green COP Launches Pre-commercial Plant in Johor, Malaysia</h3>
-      <p>Aims to produce the first tonne of sustainable biofuels by the third quarter.</p>
-    </div>
-    <a href="https://www.greencop.sg/news-1/green-cop-launches-pre-commercial-plant-in-johor%2C-malaysia-" target="_blank" rel="noopener" class="press-link">Read on greencop.sg →</a>
-  </div>
-  <div class="press-item">
-    <div>
-      <span class="press-date">16 Apr 2024</span>
-      <h3>Ken Energy Pte Ltd Partners with Green COP to Advance Sustainable Biofuel Solutions</h3>
-      <p>Inks MOU at Singapore Maritime Week Expo.</p>
-    </div>
-    <a href="https://www.greencop.sg/news-1/ken-energy-pte-ltd-partners-with-green-cop-to-advance-sustainable-biofuel-solutions" target="_blank" rel="noopener" class="press-link">Read on greencop.sg →</a>
-  </div>
-  <div class="press-item">
-    <div>
-      <span class="press-date">15 Mar 2024</span>
-      <h3>Green COP Announces Strategic Collaboration with IOI</h3>
-      <p>Upcycling empty palm fruit bunches into sustainable marine fuels.</p>
-    </div>
-    <a href="https://www.greencop.sg/news-1/green-cop-announces-strategic-collaboration-with-ioi" target="_blank" rel="noopener" class="press-link">Read on greencop.sg →</a>
-  </div>
-  <div class="press-item">
-    <div>
-      <span class="press-date">13 Feb 2024</span>
-      <h3>Green COP Secures Significant Angel Investment, Appoints Teo Teng Seng as Chairman</h3>
-      <p>Sustainability start-up poised to establish a biofuel pilot plant.</p>
-    </div>
-    <a href="https://www.greencop.sg/news-1/green-cop-secures-significant-angel-investment%2C-appoints-teo-teng-seng-as-chairman" target="_blank" rel="noopener" class="press-link">Read on greencop.sg →</a>
-  </div>
+    <div class="press-list" id="press-list">
+      <div class="press-item"><div><p>Loading latest news…</p></div></div>
     </div>
   </div>
 </section>
@@ -823,6 +752,59 @@
     }
     setInterval(function(){ show(current + 1); }, 6000);
   })();
+</script>
+
+<script type="module">
+  import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
+
+  const supabase = createClient(
+    'https://sjxiuegbygdcavgaqshq.supabase.co',
+    'sb_publishable_KYveA_AQ6atSjQtB2f1eug_TR6mTS8a'
+  );
+
+  const listEl = document.getElementById('press-list');
+
+  function formatDate(iso) {
+    if (!iso) return '';
+    const d = new Date(iso);
+    return d.toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
+  }
+
+  function escapeHtml(str) {
+    const div = document.createElement('div');
+    div.textContent = str || '';
+    return div.innerHTML;
+  }
+
+  async function loadNews() {
+    const { data, error } = await supabase
+      .from('news_posts')
+      .select('slug, title, excerpt, published_at, external_url')
+      .eq('published', true)
+      .order('published_at', { ascending: false });
+
+    if (error || !data || data.length === 0) {
+      listEl.innerHTML = '<div class="press-item"><div><p>No news posts yet.</p></div></div>';
+      return;
+    }
+
+    listEl.innerHTML = data.map(post => {
+      const link = post.external_url || `#${post.slug}`;
+      const target = post.external_url ? ' target="_blank" rel="noopener"' : '';
+      const linkText = post.external_url ? 'Read on greencop.sg →' : 'Read more →';
+      return `
+  <div class="press-item">
+    <div>
+      <span class="press-date">${formatDate(post.published_at)}</span>
+      <h3>${escapeHtml(post.title)}</h3>
+      <p>${escapeHtml(post.excerpt)}</p>
+    </div>
+    <a href="${link}"${target} class="press-link">${linkText}</a>
+  </div>`;
+    }).join('');
+  }
+
+  loadNews();
 </script>
 </body>
 </html>
