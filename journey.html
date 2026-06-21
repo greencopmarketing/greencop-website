@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Contact | Green COP</title>
+<title>Our Journey | Green COP</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300..700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap');
 
@@ -277,33 +277,13 @@
   .contact-form{padding:36px;}
   .field{margin-bottom:18px;}
   .field label{display:block; font-family:'IBM Plex Mono',monospace; font-size:11.5px; text-transform:uppercase; letter-spacing:.06em; color:var(--ink-muted); margin-bottom:8px;}
-  .field input, .field textarea, .field select{
+  .field input, .field textarea{
     width:100%; background:rgba(255,255,255,0.6); border:1px solid var(--glass-border); color:var(--ink);
     padding:13px 14px; border-radius:12px; font-family:'Inter',sans-serif; font-size:14.5px;
     -webkit-backdrop-filter:blur(8px); backdrop-filter:blur(8px);
   }
   .field input::placeholder, .field textarea::placeholder{color:#8A9A92;}
   .field textarea{min-height:100px; resize:vertical;}
-  .field select{appearance:none; cursor:pointer;}
-
-  /* CONTACT PAGE extras */
-  .contact-info-list{margin-top:24px;}
-  .contact-info-item{display:flex; gap:14px; align-items:flex-start; margin-bottom:20px;}
-  .contact-info-icon{
-    width:38px; height:38px; border-radius:10px; flex:0 0 auto;
-    background:linear-gradient(135deg, rgba(31,164,99,0.14), rgba(31,138,224,0.14));
-    display:flex; align-items:center; justify-content:center; font-size:17px;
-  }
-  .contact-info-item h4{font-size:14px; font-weight:600; margin-bottom:3px;}
-  .contact-info-item p, .contact-info-item a{font-size:14px; color:var(--ink-muted); text-decoration:none;}
-  .contact-info-item a:hover{color:var(--green-deep);}
-  .social-row{display:flex; gap:12px; margin-top:8px;}
-  .social-pill{
-    width:38px; height:38px; border-radius:50%; display:flex; align-items:center; justify-content:center;
-    background:rgba(255,255,255,0.7); border:1px solid var(--glass-border); transition:transform .15s;
-  }
-  .social-pill:hover{transform:scale(1.08);}
-  .social-pill svg{width:16px; height:16px;}
 
   /* FOOTER */
   footer{padding:24px 18px 36px;}
@@ -657,12 +637,14 @@
     .press-item{flex-direction:column; align-items:flex-start;}
   }
 </style>
+
 <style>
-  /* FEATURED CAROUSEL — Celebrating X Years of Excellence */
-  .feat-carousel{margin-top:8px;}
+  .feat-carousel{padding-top:130px; padding-bottom:56px;}
+  .feat-heading{text-align:center; margin-bottom:32px;}
+  .feat-heading h2{font-size:clamp(24px,3vw,32px); font-weight:600; font-family:'Inter',sans-serif;}
   .feat-carousel-frame{
-    position:relative; border-radius:18px; overflow:hidden; aspect-ratio:16/6.2;
-    background:#0E1B3A;
+    position:relative; overflow:hidden; aspect-ratio:16/5.2;
+    background:#0E1B3A; width:100%;
   }
   .feat-slide{
     position:absolute; inset:0; opacity:0; transition:opacity .5s ease; pointer-events:none;
@@ -670,24 +652,38 @@
   .feat-slide.active{opacity:1; pointer-events:auto;}
   .feat-slide img{width:100%; height:100%; object-fit:cover; display:block;}
   .feat-nav{
-    position:absolute; top:50%; transform:translateY(-50%); width:42px; height:42px; border-radius:50%;
-    background:rgba(0,0,0,0.55); color:#fff; border:none; display:flex; align-items:center; justify-content:center;
+    position:absolute; top:50%; transform:translateY(-50%); width:36px; height:36px; border-radius:6px;
+    background:rgba(0,0,0,0.6); color:#fff; border:none; display:flex; align-items:center; justify-content:center;
     cursor:pointer; font-size:18px; z-index:5;
   }
-  .feat-nav:hover{background:rgba(0,0,0,0.75);}
-  .feat-prev{left:16px;}
-  .feat-next{right:16px;}
-  .feat-caption{text-align:center; margin-top:24px;}
-  .feat-caption h3{font-size:22px; margin-bottom:8px;}
-  .feat-caption p{color:var(--ink-muted); font-size:14.5px; max-width:760px; margin:0 auto;}
-  .feat-dots{display:flex; gap:8px; justify-content:center; margin-top:18px;}
-  .feat-dot{width:8px; height:8px; border-radius:50%; background:var(--hairline); border:none; cursor:pointer; padding:0;}
-  .feat-dot.active{background:linear-gradient(90deg, var(--green), var(--blue));}
+  .feat-nav:hover{background:rgba(0,0,0,0.8);}
+  .feat-next{right:20px;}
+  .feat-caption{text-align:center; margin-top:28px; padding:0 24px;}
+  .feat-caption h3{font-size:22px; font-weight:600; margin-bottom:8px; font-family:'Inter',sans-serif;}
+  .feat-caption p{color:var(--ink-muted); font-size:14.5px; max-width:900px; margin:0 auto;}
   @media (max-width:700px){
     .feat-carousel-frame{aspect-ratio:4/5;}
+    .feat-carousel{padding-top:110px;}
   }
 </style>
-
+<style>
+  .feat-card{background:var(--paper); border-radius:16px; overflow:hidden; box-shadow:0 2px 10px rgba(16,36,28,0.06); display:flex; flex-direction:column;}
+  .feat-card img{width:100%; aspect-ratio:16/10; object-fit:cover; display:block;}
+  .feat-card .feat-card-body{padding:18px 20px 22px;}
+  .feat-card .feat-card-cat{font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:.06em; text-transform:uppercase; color:var(--blue-deep);}
+  .feat-card h3{font-size:16.5px; font-weight:500; margin:8px 0 6px; line-height:1.3;}
+  .feat-card p{font-size:13.5px; color:var(--ink-muted); line-height:1.5;}
+  .filter-pill{
+    border:1px solid var(--hairline); background:var(--paper); border-radius:999px; padding:8px 18px;
+    font-size:13.5px; cursor:pointer; color:var(--ink-muted); transition:all .15s;
+  }
+  .filter-pill:hover{border-color:var(--blue-deep);}
+  .filter-pill.active{background:var(--blue-deep); color:#fff; border-color:var(--blue-deep);}
+  .timeline-cat{
+    display:inline-block; font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:.05em; text-transform:uppercase;
+    color:var(--blue-deep); margin-bottom:4px;
+  }
+</style>
 </head>
 <body>
 <div class="blob blob-1"></div>
@@ -712,61 +708,47 @@
 
 <header class="page-hero">
   <div class="wrap">
-    <span class="eyebrow">Get in touch</span>
-    <h1>Connect with us.</h1>
-    <p>Whether you're exploring a feedstock partnership, a maritime pilot, a press inquiry, or want to join the team — we'd like to hear from you.</p>
+    <span class="eyebrow">Our Journey</span>
+    <h1>Milestones, awards, and moments along the way.</h1>
+    <p>From early pilots to international recognition — a running record of what we've built together.</p>
   </div>
 </header>
 
-<section style="padding-top:62px;">
+<section>
   <div class="wrap">
-    <div class="contact-grid">
+    <div class="section-head">
       <div>
-        <p>Your information stays confidential and is used solely to respond to your inquiry. We typically respond within 2–3 business days.</p>
-
-        <div class="contact-info-list">
-          <div class="contact-info-item">
-            <div class="contact-info-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#0E7A4B" stroke-width="2"><path d="M3 5h18v14H3z"/><path d="M3 6l9 7 9-7"/></svg></div>
-            <div>
-              <h4>Email</h4>
-              <a href="mailto:info@greencop.sg">info@greencop.sg</a>
-            </div>
-          </div>
-          <div class="contact-info-item">
-            <div class="contact-info-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#0D63B0" stroke-width="2"><path d="M12 21s7-7.5 7-12a7 7 0 1 0-14 0c0 4.5 7 12 7 12z"/><circle cx="12" cy="9" r="2.5"/></svg></div>
-            <div>
-              <h4>Office</h4>
-              <p>71 Ayer Rajah Crescent, Suite 01-16<br>Singapore 139951</p>
-            </div>
-          </div>
-        </div>
-
-        <h4 style="font-size:14px; font-weight:600; margin-bottom:0;">Follow us</h4>
-        <div class="social-row">
-          <a href="https://www.linkedin.com/company/green-cop" target="_blank" rel="noopener" class="social-pill" aria-label="Green COP on LinkedIn"><svg viewBox="0 0 24 24" fill="#0A66C2"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14zM7.12 20.45H3.56V9h3.56v11.45z"/></svg></a>
-        </div>
+        <span class="eyebrow">Highlights</span>
+        <h2>Recent wins.</h2>
       </div>
-
-      <form class="contact-form glass" id="contact-form">
-        <div class="field"><label>Name</label><input type="text" id="cf-name" name="name" placeholder="Your name" required></div>
-        <div class="field"><label>Email</label><input type="email" id="cf-email" name="email" placeholder="you@company.com" required></div>
-        <div class="field">
-          <label>Inquiry type</label>
-          <select id="cf-inquiry-type" name="inquiry_type">
-            <option value="">Select an option</option>
-            <option value="partnership">Partnership</option>
-            <option value="press">Press</option>
-            <option value="careers">Careers</option>
-            <option value="general">General</option>
-          </select>
-        </div>
-        <div class="field"><label>Message</label><textarea id="cf-message" name="message" placeholder="Tell us a little about what you're looking for" required></textarea></div>
-        <button type="submit" class="btn btn-primary" id="cf-submit" style="border:none; cursor:pointer;">Send inquiry</button>
-        <p id="cf-status" style="font-size:13.5px; margin-top:10px; display:none;"></p>
-      </form>
+    </div>
+    <div id="featured-grid" class="news-list" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(260px,1fr)); gap:20px;">
+      <p>Loading highlights…</p>
     </div>
   </div>
 </section>
+
+<section>
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <span class="eyebrow">Timeline</span>
+        <h2>The full story.</h2>
+      </div>
+    </div>
+    <div id="category-filters" style="display:flex; gap:10px; flex-wrap:wrap; margin-bottom:24px;">
+      <button class="filter-pill active" data-category="all">All</button>
+      <button class="filter-pill" data-category="Highlight">Highlights</button>
+      <button class="filter-pill" data-category="Award">Awards</button>
+      <button class="filter-pill" data-category="International">International</button>
+      <button class="filter-pill" data-category="Event">Events</button>
+    </div>
+    <div class="press-list" id="timeline-list">
+      <div class="press-item"><div><p>Loading journey…</p></div></div>
+    </div>
+  </div>
+</section>
+
 
 <div class="convert-bar"></div>
 <footer>
@@ -784,41 +766,96 @@
     'sb_publishable_KYveA_AQ6atSjQtB2f1eug_TR6mTS8a'
   );
 
-  const form = document.getElementById('contact-form');
-  const statusEl = document.getElementById('cf-status');
-  const submitBtn = document.getElementById('cf-submit');
+  let allMilestones = [];
+  let activeCategory = 'all';
 
-  function showStatus(message, isError) {
-    statusEl.textContent = message;
-    statusEl.style.display = 'block';
-    statusEl.style.color = isError ? '#c0392b' : '#1f7a3f';
+  function formatDate(iso) {
+    if (!iso) return '';
+    const d = new Date(iso);
+    return d.toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
   }
 
-  form.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    submitBtn.disabled = true;
-    submitBtn.textContent = 'Sending…';
+  function escapeHtml(str) {
+    const div = document.createElement('div');
+    div.textContent = str || '';
+    return div.innerHTML;
+  }
 
-    const payload = {
-      name: document.getElementById('cf-name').value.trim(),
-      email: document.getElementById('cf-email').value.trim(),
-      inquiry_type: document.getElementById('cf-inquiry-type').value || null,
-      message: document.getElementById('cf-message').value.trim()
-    };
-
-    const { error } = await supabase.from('contact_submissions').insert(payload);
-
-    if (error) {
-      showStatus("Something went wrong sending your message. Please try again or email us directly.", true);
-      submitBtn.disabled = false;
-      submitBtn.textContent = 'Send inquiry';
-    } else {
-      showStatus("Thanks — your message has been sent. We'll be in touch soon.", false);
-      form.reset();
-      submitBtn.disabled = false;
-      submitBtn.textContent = 'Send inquiry';
+  function renderFeatured(items) {
+    const grid = document.getElementById('featured-grid');
+    const featured = items.filter(m => m.featured);
+    if (featured.length === 0) {
+      grid.innerHTML = '<p>No highlights yet.</p>';
+      return;
     }
+    grid.innerHTML = featured.map(m => `
+      <div class="feat-card">
+        ${m.image_url ? `<img src="${m.image_url}" alt="${escapeHtml(m.title)}">` : ''}
+        <div class="feat-card-body">
+          <span class="feat-card-cat">${escapeHtml(m.category)}</span>
+          <h3>${escapeHtml(m.title)}</h3>
+          <p>${escapeHtml(m.description || '')}</p>
+        </div>
+      </div>`).join('');
+  }
+
+  function renderTimeline() {
+    const listEl = document.getElementById('timeline-list');
+    const items = activeCategory === 'all'
+      ? allMilestones
+      : allMilestones.filter(m => m.category === activeCategory);
+
+    if (items.length === 0) {
+      listEl.innerHTML = '<div class="press-item"><div><p>Nothing here yet.</p></div></div>';
+      return;
+    }
+
+    listEl.innerHTML = items.map(m => {
+      const link = m.external_url
+        ? `<a href="${m.external_url}" target="_blank" rel="noopener" class="press-link">Learn more →</a>`
+        : '';
+      return `
+  <div class="press-item">
+    <div>
+      <span class="timeline-cat">${escapeHtml(m.category)}</span>
+      <span class="press-date" style="margin-left:8px;">${formatDate(m.event_date)}</span>
+      <h3>${escapeHtml(m.title)}</h3>
+      <p>${escapeHtml(m.description || '')}</p>
+    </div>
+    ${link}
+  </div>`;
+    }).join('');
+  }
+
+  async function loadJourney() {
+    const { data, error } = await supabase
+      .from('journey_milestones')
+      .select('title, description, event_date, image_url, external_url, category, featured')
+      .eq('published', true)
+      .order('display_order', { ascending: false })
+      .order('event_date', { ascending: false });
+
+    if (error || !data || data.length === 0) {
+      document.getElementById('featured-grid').innerHTML = '<p>No highlights yet.</p>';
+      document.getElementById('timeline-list').innerHTML = '<div class="press-item"><div><p>No journey entries yet.</p></div></div>';
+      return;
+    }
+
+    allMilestones = data;
+    renderFeatured(allMilestones);
+    renderTimeline();
+  }
+
+  document.querySelectorAll('.filter-pill').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.filter-pill').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      activeCategory = btn.dataset.category;
+      renderTimeline();
+    });
   });
+
+  loadJourney();
 </script>
 </body>
 </html>
