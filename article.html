@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Media | Green COP</title>
+<title id="page-title">Press Release | Green COP</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300..700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap');
 
@@ -687,48 +687,24 @@
 </nav>
 <div class="convert-bar"></div>
 
-<section class="feat-carousel">
-  <div class="wrap feat-heading">
-    <h2>Celebrating 5 Years of Excellence</h2>
-  </div>
-  <div class="feat-carousel-frame" id="featFrame">
-      <div class="feat-slide active" data-title="A New Age of Biofuel" data-desc="At SIBCON 2024, CEO Dr. Hanson Lee highlighted Green COP's sustainable drop-in biofuels made from agri-waste as a scalable, seamless solution to help the maritime industry achieve IMO decarbonization targets.">
-        <img src="https://static.wixstatic.com/media/08b376_0f65d1e4bc51487e929dc105417a32ed~mv2.jpg" alt="A New Age of Biofuel">
-      </div>
-      <div class="feat-slide" data-title="Start-Up of the Year Award" data-desc="A recognition of our commitment to sustainable biofuel innovation and the journey toward a Net Zero future.">
-        <img src="https://static.wixstatic.com/media/08b376_ac9f8c59780a45f8a49f1f3b8973a7fc~mv2.jpeg" alt="Start-Up of the Year Award">
-      </div>
-      <div class="feat-slide" data-title="Singapore Norway Innovation Conference 2024" data-desc="Green COP received the Most Promising Maritime Technology Award at the SNIC 2024 Innovation Awards, recognising our breakthrough in converting plant-based waste into clean, sustainable marine fuel.">
-        <img src="https://static.wixstatic.com/media/08b376_1f39620fcab8462c8abb28d0db31e24d~mv2.png" alt="Singapore Norway Innovation Conference 2024">
-      </div>
-      <div class="feat-slide" data-title="Green Innovation Takes Stage" data-desc="Green COP presented at the Pinghu-Tsinghua Yangtze River Delta Innovation Exchange, sharing our patented technology that transforms plant-based waste into bio-alcohols with real-world impact across industries.">
-        <img src="https://static.wixstatic.com/media/08b376_eb42359a2ea543d689a146d9a223973f~mv2.jpeg" alt="Green Innovation Takes Stage">
-      </div>
-      <div class="feat-slide" data-title="The Green Launch" data-desc="Green COP, in collaboration with IOI Corporation, launched the \u201cAgri-Waste Revolution: The Green Launch\u201d to showcase its biobutanol initiative, uniting industry leaders to advance sustainable fuels.">
-        <img src="https://static.wixstatic.com/media/08b376_2b5a6f0bd60849a8aaef9493ed7e7a2a~mv2.jpg" alt="The Green Launch">
-      </div>
-  </div>
-  <div class="wrap">
-    <div class="feat-caption" id="featCaption">
-      <h3>A New Age of Biofuel</h3>
-      <p>At SIBCON 2024, CEO Dr. Hanson Lee highlighted Green COP's sustainable drop-in biofuels made from agri-waste as a scalable, seamless solution to help the maritime industry achieve IMO decarbonization targets.</p>
+<section>
+  <div class="wrap" style="max-width:760px; margin:0 auto; padding-top:40px; padding-bottom:60px;">
+    <a href="media.html" style="font-size:13.5px; color:var(--blue-deep); text-decoration:none; display:inline-block; margin-bottom:24px;">&larr; Back to Press Releases</a>
+    <div id="article-loading"><p>Loading article…</p></div>
+    <article id="article-content" style="display:none;">
+      <span class="eyebrow" id="article-date"></span>
+      <h1 id="article-title" style="font-family:'Fraunces',serif; font-size:clamp(28px,4vw,42px); font-weight:500; line-height:1.15; margin:10px 0 18px;"></h1>
+      <p id="article-excerpt" style="font-size:18px; color:var(--ink-muted); margin-bottom:24px;"></p>
+      <img id="article-image" src="" alt="" style="width:100%; border-radius:16px; margin-bottom:32px; display:none;">
+      <div id="article-body" style="font-size:16.5px; line-height:1.75; color:var(--ink);"></div>
+      <p id="article-external" style="margin-top:32px; font-size:14px;"></p>
+    </article>
+    <div id="article-notfound" style="display:none;">
+      <p>This press release couldn't be found.</p>
     </div>
   </div>
 </section>
 
-<section>
-  <div class="wrap">
-    <div class="section-head">
-      <div>
-        <span class="eyebrow">Press releases</span>
-        <h2>Latest news.</h2>
-      </div>
-    </div>
-    <div class="press-list" id="press-list">
-      <div class="press-item"><div><p>Loading latest news…</p></div></div>
-    </div>
-  </div>
-</section>
 
 <div class="convert-bar"></div>
 <footer>
@@ -737,22 +713,6 @@
     <div class="footer-meta">© 2026 Green COP Pte. Ltd. — Singapore</div>
   </div>
 </footer>
-<script>
-  (function(){
-    var slides = document.querySelectorAll('#featFrame .feat-slide');
-    var captionH3 = document.querySelector('#featCaption h3');
-    var captionP = document.querySelector('#featCaption p');
-    var current = 0;
-    function show(i){
-      slides[current].classList.remove('active');
-      current = (i + slides.length) % slides.length;
-      slides[current].classList.add('active');
-      captionH3.textContent = slides[current].getAttribute('data-title');
-      captionP.textContent = slides[current].getAttribute('data-desc');
-    }
-    setInterval(function(){ show(current + 1); }, 6000);
-  })();
-</script>
 
 <script type="module">
   import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
@@ -761,8 +721,6 @@
     'https://sjxiuegbygdcavgaqshq.supabase.co',
     'sb_publishable_KYveA_AQ6atSjQtB2f1eug_TR6mTS8a'
   );
-
-  const listEl = document.getElementById('press-list');
 
   function formatDate(iso) {
     if (!iso) return '';
@@ -776,32 +734,67 @@
     return div.innerHTML;
   }
 
-  async function loadNews() {
-    const { data, error } = await supabase
-      .from('news_posts')
-      .select('slug, title, excerpt, published_at')
-      .eq('published', true)
-      .order('published_at', { ascending: false });
+  function renderBody(text) {
+    // Convert plain-text paragraphs (separated by blank lines) into <p> tags
+    return text.split(/\n\s*\n/).map(para => `<p style="margin-bottom:18px;">${escapeHtml(para.trim()).replace(/\n/g, '<br>')}</p>`).join('');
+  }
 
-    if (error || !data || data.length === 0) {
-      listEl.innerHTML = '<div class="press-item"><div><p>No news posts yet.</p></div></div>';
+  const loadingEl = document.getElementById('article-loading');
+  const contentEl = document.getElementById('article-content');
+  const notFoundEl = document.getElementById('article-notfound');
+
+  async function loadArticle() {
+    const params = new URLSearchParams(window.location.search);
+    const slug = params.get('slug');
+
+    if (!slug) {
+      loadingEl.style.display = 'none';
+      notFoundEl.style.display = 'block';
       return;
     }
 
-    listEl.innerHTML = data.map(post => {
-      return `
-  <div class="press-item">
-    <div>
-      <span class="press-date">${formatDate(post.published_at)}</span>
-      <h3>${escapeHtml(post.title)}</h3>
-      <p>${escapeHtml(post.excerpt)}</p>
-    </div>
-    <a href="article.html?slug=${encodeURIComponent(post.slug)}" class="press-link">Read more →</a>
-  </div>`;
-    }).join('');
+    const { data: post, error } = await supabase
+      .from('news_posts')
+      .select('slug, title, excerpt, body, cover_image_url, published_at, external_url')
+      .eq('slug', slug)
+      .eq('published', true)
+      .single();
+
+    loadingEl.style.display = 'none';
+
+    if (error || !post) {
+      notFoundEl.style.display = 'block';
+      return;
+    }
+
+    document.getElementById('page-title').textContent = post.title + ' | Green COP';
+    document.getElementById('article-date').textContent = formatDate(post.published_at);
+    document.getElementById('article-title').textContent = post.title;
+    document.getElementById('article-excerpt').textContent = post.excerpt || '';
+
+    if (post.cover_image_url) {
+      const img = document.getElementById('article-image');
+      img.src = post.cover_image_url;
+      img.alt = post.title;
+      img.style.display = 'block';
+    }
+
+    const bodyEl = document.getElementById('article-body');
+    if (post.body) {
+      bodyEl.innerHTML = renderBody(post.body);
+    } else {
+      bodyEl.innerHTML = '<p>Full article coming soon.</p>';
+    }
+
+    if (post.external_url) {
+      document.getElementById('article-external').innerHTML =
+        `Originally published at <a href="${post.external_url}" target="_blank" rel="noopener" style="color:var(--blue-deep);">greencop.sg</a>`;
+    }
+
+    contentEl.style.display = 'block';
   }
 
-  loadNews();
+  loadArticle();
 </script>
 </body>
 </html>
