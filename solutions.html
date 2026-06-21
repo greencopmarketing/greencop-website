@@ -619,7 +619,7 @@
 
 <!-- SOLUTIONS HERO — background video, plain text, no card, no buttons -->
 <header class="hero">
-  <video class="hero-video" id="solHeroVideo" muted loop playsinline autoplay poster="https://static.wixstatic.com/media/08b376_e146e559a7854d9a97005832dbdab930~mv2.jpg"></video>
+  <video class="hero-video" id="solHeroVideo" src="assets/video/solutions-hero.mp4" muted loop playsinline autoplay poster="assets/video/solutions-hero-poster.jpg"></video>
   <div class="hero-scrim"></div>
   <div class="wrap">
     <div class="hero-card bare">
@@ -777,11 +777,9 @@
   </div>
 </footer>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/hls.js/1.5.13/hls.min.js"></script>
 <script>
   (function(){
     var video = document.getElementById('solHeroVideo');
-    var src = 'https://repackager.wixmp.com/video.wixstatic.com/video/08b376_36aa1fdcedbc4e2896548f3ba68e3ac8/,1080p,720p,480p,360p,/mp4/file.mp4.urlset/master.m3u8';
     var START = 10, END = 60;
     function clampLoop(){
       if (video.currentTime < START || video.currentTime >= END) {
@@ -797,13 +795,6 @@
         video.currentTime = START;
       }
     });
-    if (video.canPlayType('application/vnd.apple.mpegurl')) {
-      video.src = src;
-    } else if (window.Hls && window.Hls.isSupported()) {
-      var hls = new Hls();
-      hls.loadSource(src);
-      hls.attachMedia(video);
-    }
   })();
 </script>
 </body>
