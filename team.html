@@ -602,35 +602,65 @@
   .nav-toggle{
     display:none; flex-direction:column; justify-content:center; gap:5px;
     width:36px; height:36px; border:none; background:none; cursor:pointer; padding:0;
-    z-index:200;
+    z-index:200; flex-shrink:0;
   }
   .nav-toggle span{
-    display:block; width:100%; height:2px; background:var(--ink); border-radius:2px;
-    transition:transform .25s ease, opacity .25s ease;
+    display:block; width:22px; height:2px; background:var(--ink); border-radius:2px;
+    transition:transform .25s ease, opacity .2s ease;
   }
+  /* X animation */
   .nav-inner.open .nav-toggle span:nth-child(1){transform:translateY(7px) rotate(45deg);}
-  .nav-inner.open .nav-toggle span:nth-child(2){opacity:0;}
+  .nav-inner.open .nav-toggle span:nth-child(2){opacity:0; transform:scaleX(0);}
   .nav-inner.open .nav-toggle span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+
+  /* Mobile drawer — sits outside the pill, attached to <nav> */
+  .mobile-drawer{
+    display:none;
+    position:absolute; top:calc(100% + 8px); left:0; right:0;
+    background:#fff;
+    border-radius:20px;
+    box-shadow:0 20px 48px rgba(16,36,28,0.16);
+    overflow:hidden;
+    max-height:0; opacity:0;
+    transition:max-height .32s cubic-bezier(.4,0,.2,1), opacity .22s ease;
+  }
+  .mobile-drawer.open{
+    max-height:600px; opacity:1;
+  }
+  .mobile-drawer ul{
+    list-style:none; margin:0; padding:8px 0 0;
+  }
+  .mobile-drawer ul li{
+    border-bottom:1px solid rgba(16,36,28,0.07);
+  }
+  .mobile-drawer ul li:last-child{ border-bottom:none; }
+  .mobile-drawer ul a{
+    display:block; padding:16px 28px;
+    font-size:16px; font-weight:500; color:var(--ink);
+    text-decoration:none; letter-spacing:-0.01em;
+    transition:color .15s, background .15s;
+  }
+  .mobile-drawer ul a:hover{ color:var(--green); background:rgba(39,120,82,0.04); }
+  .mobile-drawer ul a.active-nav{ color:var(--green); font-weight:600; }
+  .mobile-drawer .drawer-cta{
+    padding:16px 28px 24px;
+  }
+  .mobile-drawer .drawer-cta a{
+    display:block; text-align:center;
+    background:linear-gradient(135deg,#27784a,#4fbb77);
+    color:#fff; border-radius:999px;
+    padding:14px 24px; font-size:15px; font-weight:600;
+    text-decoration:none; letter-spacing:0.01em;
+    box-shadow:0 4px 14px rgba(39,120,82,0.28);
+    transition:filter .15s;
+  }
+  .mobile-drawer .drawer-cta a:hover{ filter:brightness(1.07); }
+
   @media (max-width:900px){
     .nav-toggle{display:flex;}
-    .nav-links{
-      display:flex; flex-direction:column; align-items:flex-start; gap:0;
-      position:absolute; top:100%; left:0; right:0;
-      background:var(--paper); border-radius:0 0 16px 16px;
-      box-shadow:0 14px 28px rgba(16,36,28,0.14);
-      max-height:0; overflow:hidden; opacity:0;
-      transition:max-height .3s ease, opacity .25s ease;
-      padding:0 24px;
-    }
-    .nav-inner.open .nav-links{
-      max-height:480px; opacity:1; padding:10px 24px 18px;
-    }
-    .nav-links li{width:100%; border-bottom:1px solid var(--hairline);}
-    .nav-links a{display:block; padding:14px 0; font-size:16px;}
-    .nav-cta{display:none;}
-    .nav-inner.open .nav-cta{
-      display:inline-block; margin:0 24px 18px;
-    }
+    .nav-links{display:none !important;}
+    .nav-cta{display:none !important;}
+    .mobile-drawer{display:block;}
   }
 </style>
 </head>
@@ -654,6 +684,18 @@
     <a href="contact.html" class="nav-cta">Get in touch</a>
   </div>
 </nav>
+<div class="mobile-drawer" id="mobileDrawer">
+  <ul>
+    <li><a href="index.html#story">Story</a></li>
+    <li><a href="index.html#impact">Impact</a></li>
+    <li><a href="solutions.html">Solutions</a></li>
+    <li><a href="team.html">Team</a></li>
+    <li><a href="media.html">Media</a></li>
+    <li><a href="journey.html">Journey</a></li>
+    <li><a href="career.html">Careers</a></li>
+  </ul>
+  <div class="drawer-cta"><a href="contact.html">Get in touch</a></div>
+</div>
 <div class="convert-bar"></div>
 
 <header class="page-hero">
@@ -785,14 +827,31 @@
 <script>
   (function(){
     var toggle = document.getElementById('navToggle');
+    var drawer = document.getElementById('mobileDrawer');
+    if(!toggle || !drawer) return;
     var inner = document.querySelector('.nav-inner');
-    if(!toggle || !inner) return;
     toggle.addEventListener('click', function(){
-      var open = inner.classList.toggle('open');
+      var open = drawer.classList.toggle('open');
+      inner.classList.toggle('open', open);
       toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      document.body.style.overflow = open ? 'hidden' : '';
     });
-    inner.querySelectorAll('.nav-links a').forEach(function(a){
-      a.addEventListener('click', function(){ inner.classList.remove('open'); });
+    drawer.querySelectorAll('a').forEach(function(a){
+      a.addEventListener('click', function(){
+        drawer.classList.remove('open');
+        inner.classList.remove('open');
+        toggle.setAttribute('aria-expanded','false');
+        document.body.style.overflow = '';
+      });
+    });
+    // Close on outside click
+    document.addEventListener('click', function(e){
+      if(!toggle.contains(e.target) && !drawer.contains(e.target)){
+        drawer.classList.remove('open');
+        inner.classList.remove('open');
+        toggle.setAttribute('aria-expanded','false');
+        document.body.style.overflow = '';
+      }
     });
   })();
 </script>
